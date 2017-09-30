@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Model", "Massive.Interview.Model\Massive.Interview.Model.csproj", "{0FF9DA72-FA0F-4B05-8CC1-9665BCF8E1DA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Entities", "Massive.Interview.Entities\Massive.Interview.Entities.csproj", "{0FF9DA72-FA0F-4B05-8CC1-9665BCF8E1DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Model.Module", "Massive.Interview.Model.Module\Massive.Interview.Model.Module.csproj", "{88672C4F-3CA7-41E0-AC20-73D46ED8D197}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Entities.Module", "Massive.Interview.Entities.Module\Massive.Interview.Entities.Module.csproj", "{88672C4F-3CA7-41E0-AC20-73D46ED8D197}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
