@@ -18,10 +18,9 @@ namespace Massive.Interview.Model
         // 
         // If you wish to target a different database and/or database provider, modify the 'GraphModel' 
         // connection string in the application configuration file.
-        public GraphModel()
-            : base("name=GraphModel")
-        {
-        }
+        public GraphModel() : base("name=GraphModel") {}
+
+        public GraphModel(string nameOrConnectionString) : base(nameOrConnectionString) {}
 
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
