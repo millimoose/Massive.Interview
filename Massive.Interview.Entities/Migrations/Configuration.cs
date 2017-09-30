@@ -5,14 +5,14 @@ namespace Massive.Interview.Model.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<GraphModel>
+    internal sealed class Configuration : DbMigrationsConfiguration<GraphEntities>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(GraphModel context)
+        protected override void Seed(GraphEntities context)
         {
             //  This method will be called after migrating to the latest version.
 

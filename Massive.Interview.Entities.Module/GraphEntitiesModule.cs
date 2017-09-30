@@ -7,23 +7,25 @@ using System.Threading.Tasks;
 
 namespace Massive.Interview.Model.Module
 {
-    public class ModelModule : Autofac.Module
+    public class GraphEntitiesModule : Autofac.Module
     {
         public string ConnectionString { get; set; }
 
-        private GraphModel NewModel()
+        private GraphEntities NewDbContext()
         {
             if (string.IsNullOrEmpty(ConnectionString))
             {
-                return new GraphModel();
-            } else
+                return new GraphEntities();
+            }
+            else
             {
-                return new GraphModel(ConnectionString);
+                return new GraphEntities(ConnectionString);
             }
         }
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(ctx => NewModel()).AsSelf();
+            builder.Register(ctx => NewDbContext()).AsSelf();
         }
     }
+}
