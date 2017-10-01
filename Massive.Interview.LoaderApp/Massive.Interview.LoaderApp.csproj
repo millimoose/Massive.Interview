@@ -59,6 +59,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INodeDocumentBatch.cs" />
     <Compile Include="INodeDocumentReader.cs" />
     <Compile Include="NodeInput.cs" />
     <Compile Include="NodeXmlDocumentReader.cs" />
