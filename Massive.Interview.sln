@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Entities.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.SmokeApp", "Massive.Interview.SmokeApp\Massive.Interview.SmokeApp.csproj", "{A3714431-368B-4714-82A2-F8DE6083427C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.LoaderApp", "Massive.Interview.LoaderApp\Massive.Interview.LoaderApp.csproj", "{27BF995D-63BF-4796-A3F0-4067FB843095}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.LoaderApp.Tests", "Massive.Interview.LoaderApp.Tests\Massive.Interview.LoaderApp.Tests.csproj", "{4FD29551-8CB6-4725-8DB0-E799BAED6396}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Support", "Massive.Interview.Support\Massive.Interview.Support.csproj", "{D2E4AF82-FFEB-409E-B6C3-B6E248257197}"
 EndProject
 Global
@@ -29,6 +33,14 @@ Global
 		{A3714431-368B-4714-82A2-F8DE6083427C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A3714431-368B-4714-82A2-F8DE6083427C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A3714431-368B-4714-82A2-F8DE6083427C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27BF995D-63BF-4796-A3F0-4067FB843095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27BF995D-63BF-4796-A3F0-4067FB843095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27BF995D-63BF-4796-A3F0-4067FB843095}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27BF995D-63BF-4796-A3F0-4067FB843095}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD29551-8CB6-4725-8DB0-E799BAED6396}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD29551-8CB6-4725-8DB0-E799BAED6396}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD29551-8CB6-4725-8DB0-E799BAED6396}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD29551-8CB6-4725-8DB0-E799BAED6396}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D2E4AF82-FFEB-409E-B6C3-B6E248257197}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D2E4AF82-FFEB-409E-B6C3-B6E248257197}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D2E4AF82-FFEB-409E-B6C3-B6E248257197}.Release|Any CPU.ActiveCfg = Release|Any CPU
