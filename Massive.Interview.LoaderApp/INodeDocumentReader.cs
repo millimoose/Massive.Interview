@@ -13,6 +13,6 @@ namespace Massive.Interview.LoaderApp
     /// </summary>
     interface INodeDocumentReader
     {
-        Task<NodeInput> ParseNodeInputAsync(Stream inputtream);
+        Task<NodeInput> ParseNodeInputAsync(Stream inputStream);
     }
 }
