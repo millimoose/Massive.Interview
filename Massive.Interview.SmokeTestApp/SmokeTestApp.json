@@ -1,0 +1,5 @@
+﻿{
+  "Entities": {
+    "ConnectionString": "Server=(localdb)\\mssqllocaldb;Database=Massive.Interview;Trusted_Connection=True;"
+  }
+}
