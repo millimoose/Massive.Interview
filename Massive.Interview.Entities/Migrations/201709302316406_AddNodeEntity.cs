@@ -1,4 +1,4 @@
-namespace Massive.Interview.Model.Migrations
+namespace Massive.Interview.Entities.Migrations
 {
     using System;
     using System.Data.Entity.Migrations;

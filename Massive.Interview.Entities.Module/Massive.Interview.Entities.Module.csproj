@@ -7,8 +7,8 @@
     <ProjectGuid>{88672C4F-3CA7-41E0-AC20-73D46ED8D197}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Massive.Interview.Model.Module</RootNamespace>
-    <AssemblyName>Massive.Interview.Model.Module</AssemblyName>
+    <RootNamespace>Massive.Interview.Entities.Module</RootNamespace>
+    <AssemblyName>Massive.Interview.Entities.Module</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Massive.Interview.Model.Module
+namespace Massive.Interview.Entities.Module
 {
     public class GraphEntitiesModule : Autofac.Module
     {
