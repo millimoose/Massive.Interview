@@ -25,13 +25,13 @@ namespace Massive.Interview.Model
         // Add a DbSet for each entity type that you want to include in your model. For more information 
         // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
 
-        public virtual DbSet<Node> Nodes { get; }
+        public DbSet<Node> Nodes { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder builder)
         {
             builder.Entity<Node>()
-                .HasMany(_ => _.RightAdjacentNodes)
-                .WithMany(_ => _.LeftAdjacentNodes)
+                .HasMany(_ => _.LeftAdjacentNodes)
+                .WithMany(_ => _.RightAdjacentNodes)
                 .Map(_ =>
                 {
                     _.ToTable("AdjacentNodes");
@@ -57,12 +57,12 @@ namespace Massive.Interview.Model
         /// <summary>
         /// The nodes adjacent to this node to its "left" - with a lesser id.
         /// </summary>
-        public virtual ICollection<Node> LeftAdjacentNodes { get; }
+        public virtual ICollection<Node> LeftAdjacentNodes { get; } = new HashSet<Node>();
 
         /// <summary>
         /// The nodes adjacent to this node to its "right" - with a greater id. 
         /// </summary>
-        public virtual ICollection<Node> RightAdjacentNodes { get; }
+        public virtual ICollection<Node> RightAdjacentNodes { get; } = new HashSet<Node>();
     }
     
 }
