@@ -7,6 +7,7 @@ namespace Massive.Interview.Entities
     using System.Data.Entity;
     using System.Globalization;
     using System.Linq;
+    using Massive.Interview.Support;
 
     /// <summary>
     /// The database context class for entities representing an undirected graph.
@@ -87,7 +88,12 @@ namespace Massive.Interview.Entities
                     return base.ToString() + new { NodeId, Label };
                 case "G":
                 default:
-                    return base.ToString() + new { NodeId, Label, LeftAdjacentNodes = LeftAdjacentNodes.ToShortString(), RightAdjacentNodes = RightAdjacentNodes.ToShortString() };
+                    return base.ToString() + new {
+                        NodeId,
+                        Label,
+                        LeftAdjacentNodes = LeftAdjacentNodes.ToShortString(),
+                        RightAdjacentNodes = RightAdjacentNodes.ToShortString()
+                    };
             }
         }
     }
