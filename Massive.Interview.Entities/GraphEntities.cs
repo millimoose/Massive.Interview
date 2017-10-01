@@ -5,6 +5,7 @@ namespace Massive.Interview.Entities
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity;
+    using System.Globalization;
     using System.Linq;
 
     /// <summary>
@@ -45,7 +46,7 @@ namespace Massive.Interview.Entities
     /// <summary>
     /// A node of an undirected graph.
     /// </summary>
-    public class Node
+    public class Node : IFormattable
     {
         public long NodeId { get; set; }
 
@@ -63,6 +64,32 @@ namespace Massive.Interview.Entities
         /// The nodes adjacent to this node to its "right" - with a greater id. 
         /// </summary>
         public virtual ICollection<Node> RightAdjacentNodes { get; } = new HashSet<Node>();
+
+        public override string ToString()
+        {
+            return ToString("G");
+        }
+
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            format = format ?? "G";
+            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+            
+            switch (format)
+            {
+                // short format
+                case "g":
+                    return base.ToString() + new { NodeId, Label };
+                    break;
+                case "G":
+                default:
+                    return base.ToString() + new { NodeId, Label, LeftAdjacentNodes = LeftAdjacentNodes.ToShortString(), RightAdjacentNodes = RightAdjacentNodes.ToShortString() };
+            }
+        }
     }
     
 }

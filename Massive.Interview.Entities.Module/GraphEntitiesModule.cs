@@ -17,7 +17,6 @@ namespace Massive.Interview.Entities.Module
         /// The connection string to initialize the <c>DbContext</c>.
         /// </summary>
         /// If this property is not set, uses the default connection string.
-        [NotNull]
         public string ConnectionString { get; set; }
 
         private GraphEntities NewDbContext()
