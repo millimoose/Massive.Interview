@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="NodeDocumentBatchTest.cs" />
     <Compile Include="NodeDocumentReaderTest.cs" />
+    <Compile Include="NodeSynchronizationTodoTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
