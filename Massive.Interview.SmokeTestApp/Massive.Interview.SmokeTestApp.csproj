@@ -3,6 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <StartupObject>Massive.Interview.SmokeTestApp.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>
