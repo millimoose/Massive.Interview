@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Autofac;
 using Massive.Interview.Entities.Module;
 using Massive.Interview.Entities;
+using System.Data.Entity;
 
 namespace Massive.Interview.SmokeApp
 {
@@ -21,10 +22,32 @@ namespace Massive.Interview.SmokeApp
             builder.RegisterModule(new GraphEntitiesModule());
             builder.RegisterType<Program>().AsSelf();
             using (var container = builder.Build())
-            using (var scope = container.BeginLifetimeScope())
+            {
+                WithScopedProgram(container, _ => _.CreateSomeNodesAsync());
+            }
+        }
+
+        /// <summary>
+        /// Run a method on this class in a new lifetime scope
+        /// </summary>
+        private static void WithScopedProgram(IContainer container, Action<Program> action)
+        {
+            using (var scope = container.BeginLifetimeScope(nameof(DbContext)))
             {
                 var program = scope.Resolve<Program>();
-                program.CreateSomeNodesAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+                action(program);
+            }
+        }
+
+        /// <summary>
+        /// Run an asynchronous method on this class in a new lifetime scope
+        /// </summary>
+        private static void WithScopedProgram<TTask>(IContainer container, Func<Program, TTask> func) where TTask : Task
+        {
+            using (var scope = container.BeginLifetimeScope(nameof(DbContext)))
+            {
+                var program = scope.Resolve<Program>();
+                func(program).GetAwaiter().GetResult();
             }
         }
 
