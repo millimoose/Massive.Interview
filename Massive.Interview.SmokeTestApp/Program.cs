@@ -24,6 +24,7 @@ namespace Massive.Interview.SmokeTestApp
             using (var container = builder.Build())
             {
                 WithScopedProgram(container, _ => _.CreateSomeNodes());
+                WithScopedProgram(container, _ => _.RemoveLink());
             }
         }
 
@@ -56,7 +57,7 @@ namespace Massive.Interview.SmokeTestApp
         }
 
         private GraphEntities Context { get; }
-        private Program(GraphEntities context)
+        public Program(GraphEntities context)
         {
             Context = context;
         }
@@ -64,6 +65,9 @@ namespace Massive.Interview.SmokeTestApp
         private void CreateSomeNodes()
         {
             Context.Database.EnsureCreated();
+            Context.RemoveRange(Context.AdjacentNodes);
+            Context.RemoveRange(Context.Nodes);
+            Context.SaveChanges();
             var left = new Node
             {
                 NodeId = 1,
@@ -87,5 +91,14 @@ namespace Massive.Interview.SmokeTestApp
             Context.SaveChanges();
         }
 
+        private void RemoveLink()
+        {
+            var node1 = Context.Nodes.Find(1L);
+            Context.RemoveRange(node1.LeftAdjacentNodes);
+            Context.RemoveRange(node1.RightAdjacentNodes);
+            var node2 = Context.Nodes.Find(2L);
+            Console.WriteLine(node1);
+            Console.WriteLine(node2);
+        }
     }
 }

@@ -13,25 +13,21 @@ namespace Massive.Interview.Entities
         /// <summary>
         /// ID of the node on the left side of the vertex. (The node with the lesser ID.)
         /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long LeftNodeId { get; set; }
+        public long? LeftNodeId { get; set; }
 
         /// <summary>
         /// The node on the left side of the vertex. (The node with the lesser ID.)
         /// </summary>
-        [Required]
         public Node LeftNode { get; set; }
 
         /// <summary>
-        /// ID of the node on the left side of the vertex. (The node with the greater ID.)
+        /// ID of the node on the right side of the vertex. (The node with the greater ID.)
         /// </summary>
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long RightNodeId { get; set; }
+        public long? RightNodeId { get; set; }
 
         /// <summary>
-        /// The node on the left side of the vertex. (The node with the greater ID.)
+        /// The node on the right side of the vertex. (The node with the greater ID.)
         /// </summary>
-        [Required]
         public Node RightNode { get; set; }
 
         public override string ToString()
