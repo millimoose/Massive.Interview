@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EntityFormattingExtensions.cs" />
     <Compile Include="GraphEntities.cs" />
     <Compile Include="Migrations\201709302316406_AddNodeEntity.cs" />
     <Compile Include="Migrations\201709302316406_AddNodeEntity.Designer.cs">

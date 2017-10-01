@@ -74,5 +74,6 @@ namespace Massive.Interview.SmokeApp
 
             await Context.SaveChangesAsync().ConfigureAwait(false);
         }
+    
     }
 }
