@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Autofac;
-using Massive.Interview.Entities.Module;
+﻿using Autofac;
 using Massive.Interview.Entities;
+using Massive.Interview.Entities.Module;
+using System;
 using System.Data.Entity;
+using System.Threading.Tasks;
 
 namespace Massive.Interview.SmokeApp
 {
@@ -23,8 +19,18 @@ namespace Massive.Interview.SmokeApp
             builder.RegisterType<Program>().AsSelf();
             using (var container = builder.Build())
             {
-                WithScopedProgram(container, _ => _.CreateSomeNodesAsync());
+                WithScopedProgram(container, _ => _.CreateSomeNodes());
+                WithScopedProgram(container, _ => _.TestLeftToRight());
+                WithScopedProgram(container, _ => _.TestRightToLeft());
             }
+        }
+
+        private void TestRightToLeft()
+        {
+        }
+
+        private void TestLeftToRight()
+        {
         }
 
         /// <summary>
@@ -57,7 +63,7 @@ namespace Massive.Interview.SmokeApp
             Context = context;
         }
 
-        private async Task CreateSomeNodesAsync()
+        private void CreateSomeNodes()
         {
             var left = Context.Nodes.Create();
             left.NodeId = 1;
@@ -72,7 +78,7 @@ namespace Massive.Interview.SmokeApp
             left.RightAdjacentNodes.Add(right);
             right.LeftAdjacentNodes.Add(left);
 
-            await Context.SaveChangesAsync().ConfigureAwait(false);
+            Context.SaveChanges();
         }
     
     }

@@ -51,10 +51,6 @@
   <ItemGroup>
     <Compile Include="EntityFormattingExtensions.cs" />
     <Compile Include="GraphEntities.cs" />
-    <Compile Include="Migrations\201709302316406_AddNodeEntity.cs" />
-    <Compile Include="Migrations\201709302316406_AddNodeEntity.Designer.cs">
-      <DependentUpon>201709302316406_AddNodeEntity.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -64,11 +60,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709302316406_AddNodeEntity.resx">
-      <DependentUpon>201709302316406_AddNodeEntity.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

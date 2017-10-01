@@ -48,7 +48,8 @@ namespace Massive.Interview.Entities
     /// </summary>
     public class Node : IFormattable
     {
-        public long NodeId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long? NodeId { get; set; }
 
         /// <summary>
         /// A text label for the node.
@@ -58,12 +59,12 @@ namespace Massive.Interview.Entities
         /// <summary>
         /// The nodes adjacent to this node to its "left" - with a lesser id.
         /// </summary>
-        public virtual ICollection<Node> LeftAdjacentNodes { get; } = new HashSet<Node>();
+        public ICollection<Node> LeftAdjacentNodes { get; } = new List<Node>(0);
 
         /// <summary>
         /// The nodes adjacent to this node to its "right" - with a greater id. 
         /// </summary>
-        public virtual ICollection<Node> RightAdjacentNodes { get; } = new HashSet<Node>();
+        public ICollection<Node> RightAdjacentNodes { get; } = new List<Node>(0);
 
         public override string ToString()
         {
@@ -84,7 +85,6 @@ namespace Massive.Interview.Entities
                 // short format
                 case "g":
                     return base.ToString() + new { NodeId, Label };
-                    break;
                 case "G":
                 default:
                     return base.ToString() + new { NodeId, Label, LeftAdjacentNodes = LeftAdjacentNodes.ToShortString(), RightAdjacentNodes = RightAdjacentNodes.ToShortString() };
