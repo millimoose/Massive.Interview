@@ -18,6 +18,7 @@ namespace Massive.Interview.Entities
         private readonly string _connectionString;
 
         public DbSet<Node> Nodes { get; set; }
+        public DbSet<AdjacentNode> AdjacentNodes { get; set; }
 
         internal GraphEntities() { }
 
@@ -37,10 +38,20 @@ namespace Massive.Interview.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var adjacentNode = modelBuilder.Entity<AdjacentNode>();
-            adjacentNode.HasKey(_ => (new { _.LeftNodeId, _.RightNodeId }));
-            adjacentNode.HasOne(_ => _.LeftNode).WithMany(_ => _.RightAdjacentNodes).HasForeignKey(_ => _.LeftNodeId);
-            adjacentNode.HasOne(_ => _.RightNode).WithMany(_ => _.LeftAdjacentNodes).HasForeignKey(_ => _.RightNodeId);
+
+            modelBuilder.Entity<AdjacentNode>()
+                .HasKey(_ => (new { _.LeftNodeId, _.RightNodeId }));
+
+            modelBuilder.Entity<AdjacentNode>()
+                .HasOne(_ => _.LeftNode)
+                .WithMany(_ => _.RightAdjacentNodes)
+                .HasForeignKey(_ => _.LeftNodeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+            modelBuilder.Entity<AdjacentNode>()
+                .HasOne(_ => _.RightNode)
+                .WithMany(_ => _.LeftAdjacentNodes)
+                .HasForeignKey(_ => _.RightNodeId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
         }
     }
 }
