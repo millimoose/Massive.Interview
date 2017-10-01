@@ -27,6 +27,12 @@ namespace Massive.Interview.LoaderApp
         /// </summary>
         public ICollection<long> AdjacentNodeIds { get; } = new List<long>();
 
+        /// <summary>
+        /// The source this node was read from.
+        /// </summary>
+        /// Serves for debugging or testing, this can be a file name or a URI or anything useful.
+        public string Source { get; set; }
+
         public override string ToString()
         {
             return base.ToString() + new

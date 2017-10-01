@@ -61,6 +61,7 @@
   <ItemGroup>
     <Compile Include="INodeDocumentBatch.cs" />
     <Compile Include="INodeDocumentReader.cs" />
+    <Compile Include="NodeDocumentDirectoryBatch.cs" />
     <Compile Include="NodeInput.cs" />
     <Compile Include="NodeXmlDocumentReader.cs" />
     <Compile Include="Program.cs" />

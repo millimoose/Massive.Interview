@@ -34,11 +34,13 @@ namespace Massive.Interview.LoaderApp
         /// <summary>
         /// Load a single file
         /// </summary>
-        private Task<NodeInput> LoadDocumentAsync(FileInfo file)
+        private async Task<NodeInput> LoadDocumentAsync(FileInfo file)
         {
             using (var stream = file.OpenRead())
             {
-                return _reader.ParseNodeInputAsync(stream);
+                NodeInput task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                task.Source = file.FullName;
+                return task;
             }
         }
     }
