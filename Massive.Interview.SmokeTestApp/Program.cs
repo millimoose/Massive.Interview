@@ -14,13 +14,23 @@ namespace Massive.Interview.SmokeTestApp
     /// </summary>
     class Program
     {
-        class SmokeTestSettings
+        public static void Main(string[] args)
         {
+            SmokeTestSettings settings = NewSettings(args);
 
-            public GraphEntitiesSettings Entities { get; set; }
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new GraphEntitiesModule(settings.Entities));
+            builder.RegisterType<Program>().AsSelf();
+            using (var container = builder.Build())
+            {
+                WithScopedProgram(container, _ => _.CreateSomeNodes());
+            }
         }
 
-        public static void Main(string[] args)
+        /// <summary>
+        /// Load the settings for this program
+        /// </summary>
+        private static SmokeTestSettings NewSettings(string[] args)
         {
             var config = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
@@ -30,14 +40,7 @@ namespace Massive.Interview.SmokeTestApp
 
             var settings = new SmokeTestSettings();
             config.Bind(settings);
-
-            var builder = new ContainerBuilder();
-            builder.RegisterModule(new GraphEntitiesModule(settings.Entities));
-            builder.RegisterType<Program>().AsSelf();
-            using (var container = builder.Build())
-            {
-                WithScopedProgram(container, _ => _.CreateSomeNodes());
-            }
+            return settings;
         }
 
         /// <summary>
@@ -52,20 +55,8 @@ namespace Massive.Interview.SmokeTestApp
             }
         }
 
-        /// <summary>
-        /// Run an asynchronous method on this class in a new lifetime scope
-        /// </summary>
-        private static void WithScopedProgram<TTask>(IContainer container, Func<Program, TTask> func) where TTask : Task
-        {
-            using (var scope = container.BeginLifetimeScope(nameof(DbContext)))
-            {
-                var program = scope.Resolve<Program>();
-                func(program).GetAwaiter().GetResult();
-            }
-        }
-
         private GraphEntities Context { get; }
-        public Program(GraphEntities context)
+        private Program(GraphEntities context)
         {
             Context = context;
         }
@@ -95,6 +86,6 @@ namespace Massive.Interview.SmokeTestApp
 
             Context.SaveChanges();
         }
-    
+
     }
 }
