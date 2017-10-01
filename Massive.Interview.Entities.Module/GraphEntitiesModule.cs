@@ -1,10 +1,6 @@
 ﻿using Autofac;
 using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Entities.Module
 {
@@ -13,24 +9,26 @@ namespace Massive.Interview.Entities.Module
     /// </summary>
     public class GraphEntitiesModule : Autofac.Module
     {
-        /// <summary>
-        /// The connection string to initialize the <c>DbContext</c>.
-        /// </summary>
-        /// If this property is not set, uses the default connection string.
-        public string ConnectionString { get; set; }
+        public GraphEntitiesSettings Settings { get; }
 
-        private GraphEntities NewDbContext()
+        public GraphEntitiesModule(GraphEntitiesSettings settings)
         {
-            return string.IsNullOrEmpty(ConnectionString) 
-                ? new GraphEntities()
-                : new GraphEntities(ConnectionString);
+            Settings = settings;
         }
-
+        
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(ctx => NewDbContext())
+            builder.Register(ctx => new GraphEntities(Settings.ConnectionString))
                 .InstancePerMatchingLifetimeScope(nameof(DbContext))
                 .AsSelf();
         }
+    }
+
+    public class GraphEntitiesSettings
+    {
+        /// <summary>
+        /// The connection string to initialize the <c>DbContext</c>.
+        /// </summary>
+        public string ConnectionString { get; set; }
     }
 }

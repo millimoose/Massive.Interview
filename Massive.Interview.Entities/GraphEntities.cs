@@ -1,47 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+using Microsoft.EntityFrameworkCore;
+
+using Massive.Interview.Support;
+
 namespace Massive.Interview.Entities
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity;
-    using System.Globalization;
-    using System.Linq;
-    using Massive.Interview.Support;
-
     /// <summary>
     /// The database context class for entities representing an undirected graph.
     /// </summary>
     public class GraphEntities : DbContext
     {
-        // Your context has been configured to use a 'GraphModel' connection string from your application's 
-        // configuration file (App.config or Web.config). By default, this connection string targets the 
-        // 'Massive.Interview.Model.GraphEntities' database on your LocalDb instance. 
-        // 
-        // If you wish to target a different database and/or database provider, modify the 'GraphModel' 
-        // connection string in the application configuration file.
-        public GraphEntities() : base("name=GraphEntities") {}
-
-        public GraphEntities(string nameOrConnectionString) : base(nameOrConnectionString) {}
-
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
+        private readonly string _connectionString;
 
         public DbSet<Node> Nodes { get; set; }
 
-        protected override void OnModelCreating(DbModelBuilder builder)
-        {
-            builder.Entity<Node>()
-                .HasMany(_ => _.LeftAdjacentNodes)
-                .WithMany(_ => _.RightAdjacentNodes)
-                .Map(_ =>
-                {
-                    _.ToTable("AdjacentNodes");
-                    _.MapLeftKey("LeftNodeId");
-                    _.MapRightKey("RightNodeId");
-                });
+        public GraphEntities(string connectionString) : base() {
+            _connectionString = connectionString;
         }
 
+        public GraphEntities(DbContextOptions<GraphEntities> options) : base(options) { }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(_connectionString);
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            var adjacentNode = modelBuilder.Entity<AdjacentNode>();
+            adjacentNode.HasKey(_ => (new { _.LeftNodeId, _.RightNodeId }));
+            adjacentNode.HasOne(_ => _.LeftNode).WithMany(_ => _.RightAdjacentNodes).HasForeignKey(_ => _.LeftNodeId);
+            adjacentNode.HasOne(_ => _.RightNode).WithMany(_ => _.LeftAdjacentNodes).HasForeignKey(_ => _.RightNodeId);
+        }
     }
 
     /// <summary>
@@ -60,12 +57,12 @@ namespace Massive.Interview.Entities
         /// <summary>
         /// The nodes adjacent to this node to its "left" - with a lesser id.
         /// </summary>
-        public ICollection<Node> LeftAdjacentNodes { get; } = new List<Node>(0);
+        public ICollection<AdjacentNode> LeftAdjacentNodes { get; } = new List<AdjacentNode>(0);
 
         /// <summary>
         /// The nodes adjacent to this node to its "right" - with a greater id. 
         /// </summary>
-        public ICollection<Node> RightAdjacentNodes { get; } = new List<Node>(0);
+        public ICollection<AdjacentNode> RightAdjacentNodes { get; } = new List<AdjacentNode>(0);
 
         public override string ToString()
         {
@@ -98,4 +95,62 @@ namespace Massive.Interview.Entities
         }
     }
     
+    /// <summary>
+    /// Join entity representing vertices between nodes.
+    /// </summary>
+    public class AdjacentNode : IFormattable
+    {
+        /// <summary>
+        /// ID of the node on the left side of the vertex. (The node with the lesser ID.)
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long LeftNodeId { get; set; }
+
+        /// <summary>
+        /// The node on the left side of the vertex. (The node with the lesser ID.)
+        /// </summary>
+        [Required]
+        public Node LeftNode { get; set; }
+
+        /// <summary>
+        /// ID of the node on the left side of the vertex. (The node with the greater ID.)
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long RightNodeId { get; set; }
+
+        /// <summary>
+        /// The node on the left side of the vertex. (The node with the greater ID.)
+        /// </summary>
+        [Required]
+        public Node RightNode { get; set; }
+
+        public override string ToString()
+        {
+            return ToString("G");
+        }
+
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            format = format ?? "G";
+            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+
+            switch (format)
+            {
+                // short format
+                case "g":
+                    return base.ToString() + new { LeftNodeId, RightNodeId };
+                case "G":
+                default:
+                    return base.ToString() + new
+                    {
+                        LeftNode = LeftNode.ToString("g"),
+                        RightNode = RightNode.ToString("g")
+                    };
+            }
+        }
+    }
 }
