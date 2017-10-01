@@ -1,0 +1,66 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Globalization;
+
+namespace Massive.Interview.Entities
+{
+    /// <summary>
+    /// Join entity representing vertices between nodes.
+    /// </summary>
+    public class AdjacentNode : IFormattable
+    {
+        /// <summary>
+        /// ID of the node on the left side of the vertex. (The node with the lesser ID.)
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long LeftNodeId { get; set; }
+
+        /// <summary>
+        /// The node on the left side of the vertex. (The node with the lesser ID.)
+        /// </summary>
+        [Required]
+        public Node LeftNode { get; set; }
+
+        /// <summary>
+        /// ID of the node on the left side of the vertex. (The node with the greater ID.)
+        /// </summary>
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public long RightNodeId { get; set; }
+
+        /// <summary>
+        /// The node on the left side of the vertex. (The node with the greater ID.)
+        /// </summary>
+        [Required]
+        public Node RightNode { get; set; }
+
+        public override string ToString()
+        {
+            return ToString("G");
+        }
+
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            format = format ?? "G";
+            formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
+
+            switch (format)
+            {
+                // short format
+                case "g":
+                    return base.ToString() + new { LeftNodeId, RightNodeId };
+                case "G":
+                default:
+                    return base.ToString() + new
+                    {
+                        LeftNode = LeftNode.ToString("g"),
+                        RightNode = RightNode.ToString("g")
+                    };
+            }
+        }
+    }
+}
