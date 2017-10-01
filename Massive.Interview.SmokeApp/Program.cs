@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Autofac;
-using Massive.Interview.Model.Module;
-using Massive.Interview.Model;
+using Massive.Interview.Entities.Module;
+using Massive.Interview.Entities;
 
 namespace Massive.Interview.SmokeApp
 {

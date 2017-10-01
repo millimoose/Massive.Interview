@@ -1,4 +1,4 @@
-namespace Massive.Interview.Model
+namespace Massive.Interview.Entities
 {
     using System;
     using System.Collections.Generic;
