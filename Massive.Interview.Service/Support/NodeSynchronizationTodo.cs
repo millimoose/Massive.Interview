@@ -4,8 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Massive.Interview.Service;
 
-namespace Massive.Interview.LoaderApp.Support
+namespace Massive.Interview.Interview.Service.Support
 {
     /// <summary>
     /// The set of operations that will synchronize the database with loaded input data.
@@ -15,11 +16,11 @@ namespace Massive.Interview.LoaderApp.Support
         /// <summary>
         /// New nodes that will be added to the database.
         /// </summary>
-        public ReadOnlyCollection<NodeInput> NodesToAdd { get; }
+        public ReadOnlyCollection<NodeInputData> NodesToAdd { get; }
         /// <summary>
         /// Nodes in the database that need to be updated.
         /// </summary>
-        public ReadOnlyCollection<NodeInput> NodesToUpdate { get; }
+        public ReadOnlyCollection<NodeInputData> NodesToUpdate { get; }
 
         /// <summary>
         /// Nodes that will be removed from the database.
@@ -32,10 +33,10 @@ namespace Massive.Interview.LoaderApp.Support
         /// </summary>
         /// <param name="oldNodeIds">previous node IDs</param>
         /// <param name="newNodes">new nodes</param>
-        public NodeSynchronizationTodo(IEnumerable<long> oldNodeIds, IEnumerable<NodeInput> newNodes)
+        public NodeSynchronizationTodo(IEnumerable<long> oldNodeIds, IEnumerable<NodeInputData> newNodes)
         {
-            var toAdd = new List<NodeInput>();
-            var toUpdate = new List<NodeInput>();
+            var toAdd = new List<NodeInputData>();
+            var toUpdate = new List<NodeInputData>();
 
             var oldSet = new HashSet<long>(oldNodeIds);
             foreach (var node in newNodes)
@@ -44,7 +45,8 @@ namespace Massive.Interview.LoaderApp.Support
                 {
                     // 
                     toUpdate.Add(node);
-                } else
+                }
+                else
                 {
                     toAdd.Add(node);
                 }

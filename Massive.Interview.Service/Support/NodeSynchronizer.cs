@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using Massive.Interview.Entities;
 using Z.EntityFramework.Plus;
 using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Services;
-using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.Service;
 
-namespace Massive.Interview.LoaderApp.Components
+namespace Massive.Interview.Interview.Service.Support
 {
     class NodeSynchronizer : INodeSynchronizer
     {
@@ -18,7 +17,7 @@ namespace Massive.Interview.LoaderApp.Components
             _db = db ?? throw new ArgumentNullException(nameof(db));
         }
 
-        public NodeSynchronizationTodo NewTodo(IEnumerable<NodeInput> newNodes)
+        public NodeSynchronizationTodo NewTodo(IEnumerable<NodeInputData> newNodes)
         {
             var oldNodeIds = (from dbNode in _db.Nodes select dbNode.NodeId.Value);
             return new NodeSynchronizationTodo(oldNodeIds, newNodes);
@@ -59,7 +58,7 @@ namespace Massive.Interview.LoaderApp.Components
         /// <summary>
         /// Convert <see cref="NodeInput"/>s to a <see cref="Node"/>s.
         /// </summary>
-        private IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInput> inputs) =>
+        private IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInputData> inputs) =>
              from input in inputs select new Node
              {
                  NodeId = input.Id,

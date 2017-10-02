@@ -13,5 +13,35 @@ namespace Massive.Interview.Service
     {
         [OperationContract]
         Task<long[]> GetExistingNodeIdsAsync();
+
+        [OperationContract]
+        Task LoadNodesAsync(IEnumerable<NodeInputData> nodeinputs);
+    }
+
+    /// <summary>
+    /// A DTO describing a node submitted to the loader.
+    /// </summary>
+    [DataContract]
+    public class NodeInputData
+    {
+        /// <summary>
+        /// The node ID.
+        /// </summary>
+        [DataMember]
+        public long Id { get; set; }
+
+        /// <summary>
+        /// The node label.
+        /// </summary>
+        [DataMember]
+
+        public string Label { get; set; }
+
+        /// <summary>
+        /// The IDs of the adjacent nodes.
+        /// </summary>
+        [DataMember]
+
+        public ICollection<long> AdjacentNodeIds { get; set; } = new List<long>();
     }
 }

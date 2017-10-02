@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
-using Massive.Interview.LoaderApp.Services;
-using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.LoaderApp.Remote;
 
-namespace Massive.Interview.LoaderApp.Components
+namespace Massive.Interview.LoaderApp.Support
 {
     /// <summary>
     /// An implementation of <see cref="INodeDocumentReader"/> that parses a
@@ -14,7 +14,7 @@ namespace Massive.Interview.LoaderApp.Components
     /// </summary>
     internal class NodeXmlDocumentReader : INodeDocumentReader
     {
-        public async Task<NodeInput> ParseNodeInputAsync(Stream inputStream)
+        public async Task<NodeInputData> ParseNodeInputAsync(Stream inputStream)
         {
             XmlReaderSettings settings = new XmlReaderSettings {
                 Async = true,
@@ -23,7 +23,7 @@ namespace Massive.Interview.LoaderApp.Components
 
             using (var reader = XmlReader.Create(inputStream, settings))
             {
-                var result = new NodeInput();
+                var result = new NodeInputData();
 
                 reader.ReadStartElement("node");
                 while (reader.IsStartElement())
@@ -49,16 +49,19 @@ namespace Massive.Interview.LoaderApp.Components
             }
         }
 
-        private void ParseAdjacentNodes(XmlReader reader, NodeInput result)
+        private void ParseAdjacentNodes(XmlReader reader, NodeInputData result)
         {
             var empty = reader.IsEmptyElement;
             reader.ReadStartElement("adjacentNodes");
+
+            var ids = new List<long>();
             if (empty) return;
 
             while (reader.IsStartElement("id"))
             {
-                result.AdjacentNodeIds.Add(reader.ReadElementContentAsLong());
+                ids.Add(reader.ReadElementContentAsLong());
             }
+            result.AdjacentNodeIds = ids.ToArray();
             reader.ReadEndElement();
 
         }

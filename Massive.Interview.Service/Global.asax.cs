@@ -23,7 +23,7 @@ namespace Massive.Interview.Service
                 ConnectionString = connectionString.ConnectionString
             };
             builder.RegisterModule(new GraphEntitiesModule(settings));
-            builder.RegisterModule(new GraphServiceModule());
+            builder.RegisterModule<GraphServiceModule>();
             AutofacHostFactory.Container = builder.Build();
         }
 

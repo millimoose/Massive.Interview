@@ -4,9 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.LoaderApp.Remote;
 
-namespace Massive.Interview.LoaderApp.Services
+namespace Massive.Interview.LoaderApp.Support
 {
 
     /// <summary>
@@ -14,6 +14,6 @@ namespace Massive.Interview.LoaderApp.Services
     /// </summary>
     interface INodeDocumentReader
     {
-        Task<NodeInput> ParseNodeInputAsync(Stream inputStream);
+        Task<NodeInputData> ParseNodeInputAsync(Stream inputStream);
     }
 }
