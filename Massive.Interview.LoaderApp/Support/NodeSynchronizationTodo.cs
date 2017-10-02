@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Massive.Interview.LoaderApp
+namespace Massive.Interview.LoaderApp.Support
 {
     /// <summary>
     /// The set of operations that will synchronize the database with loaded input data.

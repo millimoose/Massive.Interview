@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Xml;
+using Massive.Interview.LoaderApp.Services;
+using Massive.Interview.LoaderApp.Components;
 
 namespace Massive.Interview.LoaderApp.Tests
 {

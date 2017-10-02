@@ -2,8 +2,10 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Massive.Interview.LoaderApp.Services;
+using Massive.Interview.LoaderApp.Support;
 
-namespace Massive.Interview.LoaderApp
+namespace Massive.Interview.LoaderApp.Components
 {
     /// <summary>
     /// A document batch that loads all files in a directory.
@@ -14,7 +16,7 @@ namespace Massive.Interview.LoaderApp
         private INodeDocumentReader _reader;
         private string _searchPattern;
 
-        public NodeDocumentDirectoryBatch(DirectoryInfo directory, INodeDocumentReader reader, string searchPattern)
+        public NodeDocumentDirectoryBatch(INodeDocumentReader reader, DirectoryInfo directory, string searchPattern)
         {
             _directory = directory ?? throw new ArgumentNullException(nameof(directory));
             _reader = reader ?? throw new ArgumentNullException(nameof(reader));
