@@ -42,6 +42,7 @@ namespace Massive.Interview.LoaderApp.Support
             using (var stream = file.OpenRead())
             {
                 NodeInputData task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                task.Source = file.FullName;
                 return task;
             }
         }
