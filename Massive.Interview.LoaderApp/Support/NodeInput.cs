@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.Support;
 
-namespace Massive.Interview.LoaderApp
+namespace Massive.Interview.LoaderApp.Support
 {
     /// <summary>
     /// A data class representing a parsed input document describing a node.

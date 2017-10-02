@@ -3,8 +3,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml;
+using Massive.Interview.LoaderApp.Services;
+using Massive.Interview.LoaderApp.Support;
 
-namespace Massive.Interview.LoaderApp
+namespace Massive.Interview.LoaderApp.Components
 {
     /// <summary>
     /// An implementation of <see cref="INodeDocumentReader"/> that parses a

@@ -4,6 +4,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using Massive.Interview.LoaderApp.Components;
+using Massive.Interview.LoaderApp.Services;
+using Massive.Interview.LoaderApp.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Massive.Interview.LoaderApp.Tests
@@ -25,7 +28,7 @@ namespace Massive.Interview.LoaderApp.Tests
         {
             var testDataDirectory = 
                 new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "TestData"));
-            var batch = new NodeDocumentDirectoryBatch(testDataDirectory, new MockNodeDocumentReader(), "*.xml");
+            var batch = new NodeDocumentDirectoryBatch(new MockNodeDocumentReader(), testDataDirectory, "*.xml");
             NodeInput[] nodes = await batch.LoadDocumentsAsync().ConfigureAwait(false);
 
             Assert.AreEqual(2, nodes.Length);
