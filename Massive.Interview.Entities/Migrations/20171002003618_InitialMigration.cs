@@ -45,6 +45,11 @@ namespace Massive.Interview.Entities.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AdjacentNodes_LeftNodeId",
+                table: "AdjacentNodes",
+                column: "LeftNodeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_AdjacentNodes_RightNodeId",
                 table: "AdjacentNodes",
                 column: "RightNodeId");
