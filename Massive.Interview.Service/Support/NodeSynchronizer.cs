@@ -45,8 +45,8 @@ namespace Massive.Interview.Interview.Service.Support
 
             // create new adjacencies
             var adjacenciesToAdd = from input in todo.NodesToAdd.Concat(todo.NodesToUpdate)
-                              from adjacent in input.AdjacentNodeIds
-                              select (leftId: input.Id, rightId: adjacent);
+                                   from adjacent in input.AdjacentNodeIds ?? Enumerable.Empty<long>()
+                                   select (leftId: input.Id, rightId: adjacent);
 
             foreach (var (leftId, rightId) in adjacenciesToAdd)
             {

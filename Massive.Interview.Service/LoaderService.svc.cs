@@ -32,7 +32,9 @@ namespace Massive.Interview.Service
         public async Task LoadNodesAsync(IEnumerable<NodeInputData> nodeinputs)
         {
             var todo = _synchronizer.NewTodo(nodeinputs);
-            await _synchronizer.SynchronizeAsync(todo);
+            await _synchronizer.SynchronizeAsync(todo).ConfigureAwait(false);
+            await _db.SaveChangesAsync().ConfigureAwait(false);
+
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Web.Security;
 using System.Web.SessionState;
 using Autofac;
 using Autofac.Integration.Wcf;
+using Massive.Interview.Entities;
 using Massive.Interview.Entities.Module;
 
 namespace Massive.Interview.Service
@@ -24,7 +25,12 @@ namespace Massive.Interview.Service
             };
             builder.RegisterModule(new GraphEntitiesModule(settings));
             builder.RegisterModule<GraphServiceModule>();
-            AutofacHostFactory.Container = builder.Build();
+            IContainer container = builder.Build();
+            using (var scope = container.BeginLifetimeScope())
+            {
+                scope.Resolve<GraphEntities>().Database.EnsureCreated();
+            }
+            AutofacHostFactory.Container = container;
         }
 
         protected void Session_Start(object sender, EventArgs e)

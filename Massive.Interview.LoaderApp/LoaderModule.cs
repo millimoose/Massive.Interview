@@ -1,6 +1,8 @@
 ﻿using System;
 using System.IO;
 using Autofac;
+using Autofac.Integration.Wcf;
+using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.LoaderApp.Support;
 
 namespace Massive.Interview.LoaderApp
@@ -23,7 +25,13 @@ namespace Massive.Interview.LoaderApp
                 return new NodeDocumentDirectoryBatch(reader, directory, _settings.Pattern);
             }).AsImplementedInterfaces().AsSelf();
 
-            builder.RegisterType<NodeXmlDocumentReader>().AsImplementedInterfaces().AsSelf();
+            builder.RegisterType<NodeXmlDocumentReader>()
+                .AsImplementedInterfaces()
+                .AsSelf();
+
+            builder.RegisterType<LoaderServiceClient>()
+                .AsImplementedInterfaces()
+                .UseWcfSafeRelease();
         }
 
     }
