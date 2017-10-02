@@ -130,6 +130,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="GraphService.svc" />
     <Content Include="LoaderService.svc" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -139,7 +140,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GraphService.svc.cs">
+      <DependentUpon>GraphService.svc</DependentUpon>
+    </Compile>
     <Compile Include="GraphServiceModule.cs" />
+    <Compile Include="IGraphService.cs" />
     <Compile Include="ILoaderService.cs" />
     <Compile Include="LoaderService.svc.cs">
       <DependentUpon>LoaderService.svc</DependentUpon>
