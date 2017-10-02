@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.Service;
 
-namespace Massive.Interview.LoaderApp.Services
+namespace Massive.Interview.Interview.Service.Support
 {
     /// <summary>
     /// Executes a set of synchronization operations.
@@ -13,7 +13,7 @@ namespace Massive.Interview.LoaderApp.Services
         /// <summary>
         /// Create a set of operations that will synchronize the current 
         /// database to the loaded input.
-        NodeSynchronizationTodo NewTodo(IEnumerable<NodeInput> inputs);
+        NodeSynchronizationTodo NewTodo(IEnumerable<NodeInputData> inputs);
 
         /// <summary>
         /// Synchronize the database according to the given operations

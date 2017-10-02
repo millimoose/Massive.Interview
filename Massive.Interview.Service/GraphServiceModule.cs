@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Massive.Interview.Interview.Service.Support;
 
 namespace Massive.Interview.Service
 {
@@ -7,6 +8,7 @@ namespace Massive.Interview.Service
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<LoaderService>().AsSelf();
+            builder.RegisterType<NodeSynchronizer>().AsImplementedInterfaces();
         }
     }
 }

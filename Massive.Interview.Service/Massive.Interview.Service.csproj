@@ -124,6 +124,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="Z.EntityFramework.Plus.BatchDelete.EFCore, Version=1.7.1.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.BatchDelete.EFCore.1.7.1\lib\netstandard2.0\Z.EntityFramework.Plus.BatchDelete.EFCore.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -142,6 +145,9 @@
       <DependentUpon>LoaderService.svc</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Support\INodeSynchronizer.cs" />
+    <Compile Include="Support\NodeSynchronizationTodo.cs" />
+    <Compile Include="Support\NodeSynchronizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

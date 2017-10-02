@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fb10f5c7-38a2-46a7-9789-fb71eb92aeb2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:6555/LoaderService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="LoaderService.wsdl" MetadataType="Wsdl" ID="4bc6bd32-9bbd-406a-a4b1-816fcfa3a7ee" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?wsdl" />
+    <MetadataFile FileName="LoaderService.xsd" MetadataType="Schema" ID="c9710274-d3c7-433f-99da-e99fbe2956de" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LoaderService1.xsd" MetadataType="Schema" ID="ab125166-ad78-4b98-89c9-8ace5912209a" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoaderService.disco" MetadataType="Disco" ID="76ba1905-9075-4bf5-91cd-1c2b035a8695" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?disco" />
+    <MetadataFile FileName="LoaderService2.xsd" MetadataType="Schema" ID="468bd795-90f9-4766-9370-1295339df951" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LoaderService3.xsd" MetadataType="Schema" ID="e5a4a2ce-0b23-4bc2-9f52-8ed763d9559e" SourceId="1" SourceUrl="http://localhost:6555/LoaderService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

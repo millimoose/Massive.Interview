@@ -1,12 +1,7 @@
 ﻿using System;
 using System.IO;
-using System.Runtime.CompilerServices;
 using Autofac;
-using Massive.Interview.Entities.Module;
-using Massive.Interview.LoaderApp.Components;
-using Massive.Interview.LoaderApp.Services;
-
-[assembly: InternalsVisibleTo("Massive.Interview.LoaderApp.Tests")]
+using Massive.Interview.LoaderApp.Support;
 
 namespace Massive.Interview.LoaderApp
 {
@@ -21,7 +16,6 @@ namespace Massive.Interview.LoaderApp
 
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterModule(new GraphEntitiesModule(_settings.Entities));
             builder.Register(ctx =>
             {
                 INodeDocumentReader reader = ctx.Resolve<INodeDocumentReader>();
@@ -29,7 +23,6 @@ namespace Massive.Interview.LoaderApp
                 return new NodeDocumentDirectoryBatch(reader, directory, _settings.Pattern);
             }).AsImplementedInterfaces().AsSelf();
 
-            builder.RegisterType<NodeSynchronizer>().AsImplementedInterfaces().AsSelf();
             builder.RegisterType<NodeXmlDocumentReader>().AsImplementedInterfaces().AsSelf();
         }
 

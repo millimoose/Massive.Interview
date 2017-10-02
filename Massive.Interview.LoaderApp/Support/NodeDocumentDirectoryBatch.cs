@@ -3,10 +3,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Services;
-using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.LoaderApp.Remote;
 
-namespace Massive.Interview.LoaderApp.Components
+namespace Massive.Interview.LoaderApp.Support
 {
     /// <summary>
     /// A document batch that loads all files in a directory.
@@ -24,7 +23,7 @@ namespace Massive.Interview.LoaderApp.Components
             _searchPattern = searchPattern;
         }
 
-        public Task<NodeInput[]> LoadDocumentsAsync()
+        public Task<NodeInputData[]> LoadDocumentsAsync()
         {
             var files = _searchPattern == null 
                 ? _directory.EnumerateFiles()
@@ -37,13 +36,12 @@ namespace Massive.Interview.LoaderApp.Components
         /// <summary>
         /// Load a single file
         /// </summary>
-        private async Task<NodeInput> LoadDocumentAsync(FileInfo file)
+        private async Task<NodeInputData> LoadDocumentAsync(FileInfo file)
         {
             Trace.TraceInformation($"NodeDocumentDirectoryBatch.LoadDocumentAsync(file: {file.Name})");
             using (var stream = file.OpenRead())
             {
-                NodeInput task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
-                task.Source = file.FullName;
+                NodeInputData task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
                 return task;
             }
         }
