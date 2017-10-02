@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Massive.Interview.Service
 {
@@ -12,6 +13,34 @@ namespace Massive.Interview.Service
     public interface IGraphService
     {
         [OperationContract]
-        void DoWork();
+        Task<GraphData> GetGraphAsync();
+    }
+
+    [DataContract]
+    public class GraphData
+    {
+        [DataMember]
+        public NodeData[] Nodes { get; set; }
+
+        [DataMember]
+        public AdjacentNodeData[] AdjacentNodes { get; set; }
+    }
+
+    [DataContract]
+    public class NodeData
+    {
+        [DataMember]
+        public long Id { get; set; }
+        [DataMember]
+        public string Label { get; set; }
+    }
+
+    [DataContract]
+    public class AdjacentNodeData
+    {
+        [DataMember]
+        public long LeftId { get; set; }
+        [DataMember]
+        public long RightId { get; set; }
     }
 }
