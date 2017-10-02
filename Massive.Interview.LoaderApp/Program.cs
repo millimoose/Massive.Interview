@@ -1,25 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Autofac;
-using Massive.Interview.Entities.Module;
-using Massive.Interview.LoaderApp.Components;
+using Massive.Interview.Entities;
 using Massive.Interview.LoaderApp.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 [assembly: InternalsVisibleTo("Massive.Interview.LoaderApp.Tests")]
 
 namespace Massive.Interview.LoaderApp
 {
-    class LoaderSettings
-    {
-        public string InputDirectory { get; set; }
-        public string Pattern { get; set; } = "*.xml";
-        public GraphEntitiesSettings Entities { get; set; }
-    }
     class Program
     {
+        readonly INodeDocumentBatch _batch;
+        readonly INodeSynchronizer _synchronizer;
+        readonly GraphEntities _db;
+
+        public Program(INodeDocumentBatch batch, INodeSynchronizer synchronizer, GraphEntities db)
+        {
+            _batch = batch ?? throw new ArgumentNullException(nameof(batch));
+            _synchronizer = synchronizer ?? throw new ArgumentNullException(nameof(synchronizer));
+            _db = db;
+        }
+
+        public static void Main(string[] args)
+        {
+            var settings = NewSettings(args);
+
+            var builder = new ContainerBuilder();
+            builder.RegisterModule(new LoaderModule(settings));
+            builder.RegisterType<Program>().AsSelf();
+
+            using (var container = builder.Build())
+            using (var scope = container.BeginLifetimeScope(nameof(DbContext)))
+            {
+                scope.Resolve<Program>().SynchronizeAsync().GetAwaiter().GetResult();
+            }
+        }
 
         static LoaderSettings NewSettings(string[] args)
         {
@@ -33,35 +52,14 @@ namespace Massive.Interview.LoaderApp
             config.Bind(result);
             return result;
         }
-        public static void Main(string[] args)
+        
+        private async Task SynchronizeAsync()
         {
-            var settings = NewSettings(args);
-            Console.WriteLine(new DirectoryInfo(settings.InputDirectory));
+            await _db.Database.EnsureCreatedAsync().ConfigureAwait(false);
+            var inputs = await _batch.LoadDocumentsAsync().ConfigureAwait(false);
+            var todo = _synchronizer.NewTodo(inputs);
+            await _synchronizer.SynchronizeAsync(todo).ConfigureAwait(false);
+            await _db.SaveChangesAsync().ConfigureAwait(false);
         }
-    }
-
-    class LoaderModule : Autofac.Module
-    {
-        LoaderSettings _settings;
-
-        public LoaderModule(LoaderSettings settings)
-        {
-            _settings = settings ?? throw new ArgumentNullException(nameof(settings));
-        }
-
-        protected override void Load(ContainerBuilder builder)
-        {
-            builder.RegisterModule(new GraphEntitiesModule(_settings.Entities));
-            builder.Register(ctx =>
-            {
-                INodeDocumentReader reader = ctx.Resolve<INodeDocumentReader>();
-                DirectoryInfo directory = new DirectoryInfo(_settings.InputDirectory);
-                return new NodeDocumentDirectoryBatch(reader, directory, _settings.Pattern);
-            }).AsImplementedInterfaces().AsSelf();
-
-            builder.RegisterType<NodeSynchronizer>().AsImplementedInterfaces().AsSelf();
-            builder.RegisterType<NodeXmlDocumentReader>().AsImplementedInterfaces().AsSelf();
-        }
-
     }
 }

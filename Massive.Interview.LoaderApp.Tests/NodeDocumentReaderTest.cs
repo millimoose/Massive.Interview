@@ -111,5 +111,23 @@ namespace Massive.Interview.LoaderApp.Tests
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
+        static readonly string _emptyAdjacentIds =
+@"<?xml version=""1.0"" encoding=""utf-8""?>
+<node>
+    <id>1</id>
+    <label>Apple</label>
+    <adjacentNodes/>
+</node>";
+        [TestMethod]
+        public async Task Parse_empty_adjacentIds()
+        {
+            await WithStreamAsync(_emptyAdjacentIds, async stream =>
+            {
+                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                CollectionAssert.AreEquivalent(
+                    new long[0],
+                    node.AdjacentNodeIds.ToArray());
+            }).ConfigureAwait(false);
+        }
     }
 }

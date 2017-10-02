@@ -78,10 +78,7 @@ namespace Massive.Interview.Entities
                 (leftId, rightId) = (rightId, leftId);
             }
 
-            var exists = await
-                (from n in dbNodes
-                 where n.LeftNodeId == leftId && n.RightNodeId == rightId
-                 select n).AnyAsync().ConfigureAwait(false);
+            var exists = null != await dbNodes.FindAsync(leftId, rightId).ConfigureAwait(false);
 
             if (!exists)
             {
