@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,16 @@ namespace Massive.Interview.LoaderApp
         /// <summary>
         /// New nodes that will be added to the database.
         /// </summary>
-        public IReadOnlyCollection<NodeInput> NodesToAdd { get; }
+        public ReadOnlyCollection<NodeInput> NodesToAdd { get; }
         /// <summary>
         /// Nodes in the database that need to be updated.
         /// </summary>
-        public IReadOnlyCollection<NodeInput> NodesToUpdate { get; }
+        public ReadOnlyCollection<NodeInput> NodesToUpdate { get; }
 
         /// <summary>
         /// Nodes that will be removed from the database.
         /// </summary>
-        public IReadOnlyCollection<long> NodeIdsToRemove { get; }
+        public ReadOnlyCollection<long> NodeIdsToRemove { get; }
 
         /// <summary>
         /// Create a set of synmchronisation operations based on node IDs 

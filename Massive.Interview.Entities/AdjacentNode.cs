@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace Massive.Interview.Entities
 {
@@ -57,6 +60,34 @@ namespace Massive.Interview.Entities
                         RightNode = RightNode.ToString("g")
                     };
             }
+        }
+    }
+
+    public static class AdjacentNodeExtensions
+    {
+        /// <summary>
+        /// Correctly set up an adjacency in the graph.
+        /// </summary>
+        /// Ensures sure that the node to the left of the adjacency has a 
+        /// lesser ID than the node to the right.
+        public static async Task MakeAdjacentAsync(this DbSet<AdjacentNode> dbNodes, long leftId, long rightId)
+        {
+            // swap nodes if neccessary
+            if (leftId > rightId)
+            {
+                (leftId, rightId) = (rightId, leftId);
+            }
+
+            var exists = await
+                (from n in dbNodes
+                 where n.LeftNodeId == leftId && n.RightNodeId == rightId
+                 select n).AnyAsync().ConfigureAwait(false);
+
+            if (!exists)
+            {
+                await dbNodes.AddAsync(new AdjacentNode { LeftNodeId = leftId, RightNodeId = rightId }).ConfigureAwait(false);
+            }
+            return;
         }
     }
 }

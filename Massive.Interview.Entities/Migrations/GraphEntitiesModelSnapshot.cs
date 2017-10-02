@@ -28,6 +28,8 @@ namespace Massive.Interview.Entities.Migrations
 
                     b.HasKey("LeftNodeId", "RightNodeId");
 
+                    b.HasIndex("LeftNodeId");
+
                     b.HasIndex("RightNodeId");
 
                     b.ToTable("AdjacentNodes");

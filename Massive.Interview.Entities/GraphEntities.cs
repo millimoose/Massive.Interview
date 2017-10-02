@@ -41,12 +41,17 @@ namespace Massive.Interview.Entities
 
             modelBuilder.Entity<AdjacentNode>()
                 .HasKey(_ => (new { _.LeftNodeId, _.RightNodeId }));
+            modelBuilder.Entity<AdjacentNode>()
+                .HasIndex(_ => _.LeftNodeId);
+            modelBuilder.Entity<AdjacentNode>()
+                .HasIndex(_ => _.RightNodeId);
 
             modelBuilder.Entity<AdjacentNode>()
                 .HasOne(_ => _.LeftNode)
                 .WithMany(_ => _.RightAdjacentNodes)
                 .HasForeignKey(_ => _.LeftNodeId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
             modelBuilder.Entity<AdjacentNode>()
                 .HasOne(_ => _.RightNode)
                 .WithMany(_ => _.LeftAdjacentNodes)

@@ -11,7 +11,7 @@ using System;
 namespace Massive.Interview.Entities.Migrations
 {
     [DbContext(typeof(GraphEntities))]
-    [Migration("20171001225931_InitialMigration")]
+    [Migration("20171002003618_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,6 +28,8 @@ namespace Massive.Interview.Entities.Migrations
                     b.Property<long?>("RightNodeId");
 
                     b.HasKey("LeftNodeId", "RightNodeId");
+
+                    b.HasIndex("LeftNodeId");
 
                     b.HasIndex("RightNodeId");
 
