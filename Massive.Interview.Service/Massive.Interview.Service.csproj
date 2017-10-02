@@ -144,8 +144,6 @@
       <DependentUpon>GraphService.svc</DependentUpon>
     </Compile>
     <Compile Include="GraphServiceModule.cs" />
-    <Compile Include="IGraphService.cs" />
-    <Compile Include="ILoaderService.cs" />
     <Compile Include="LoaderService.svc.cs">
       <DependentUpon>LoaderService.svc</DependentUpon>
     </Compile>
@@ -175,6 +173,10 @@
     <ProjectReference Include="..\Massive.Interview.Entities\Massive.Interview.Entities.csproj">
       <Project>{09fadaa3-d021-4380-b3dd-14c4d2a6e074}</Project>
       <Name>Massive.Interview.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Massive.Interview.Service.Contract\Massive.Interview.Service.Contract.csproj">
+      <Project>{9b04011c-4c10-4f20-96bd-c315f7e78191}</Project>
+      <Name>Massive.Interview.Service.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

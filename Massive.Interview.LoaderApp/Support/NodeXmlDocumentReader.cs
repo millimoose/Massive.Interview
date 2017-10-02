@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using Massive.Interview.LoaderApp.Remote;
+using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
 {
@@ -57,11 +58,10 @@ namespace Massive.Interview.LoaderApp.Support
  
             if (empty)
             {
-                result.AdjacentNodeIds = new long[0];
                 return;
             }
 
-            result.AdjacentNodeIds = ReadIdList(reader).ToArray();
+            result.AdjacentNodeIds = ReadIdList(reader).ToList();
             reader.ReadEndElement();
 
         }

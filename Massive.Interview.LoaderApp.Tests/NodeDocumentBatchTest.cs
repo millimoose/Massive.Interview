@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.Service.Contract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Massive.Interview.LoaderApp.Tests

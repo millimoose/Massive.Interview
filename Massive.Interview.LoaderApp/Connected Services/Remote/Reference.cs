@@ -9,111 +9,32 @@
 //------------------------------------------------------------------------------
 
 namespace Massive.Interview.LoaderApp.Remote {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="NodeInputData", Namespace="http://schemas.datacontract.org/2004/07/Massive.Interview.Service")]
-    [System.SerializableAttribute()]
-    public partial class NodeInputData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long[] AdjacentNodeIdsField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private long IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LabelField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long[] AdjacentNodeIds {
-            get {
-                return this.AdjacentNodeIdsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AdjacentNodeIdsField, value) != true)) {
-                    this.AdjacentNodeIdsField = value;
-                    this.RaisePropertyChanged("AdjacentNodeIds");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public long Id {
-            get {
-                return this.IdField;
-            }
-            set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Label {
-            get {
-                return this.LabelField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LabelField, value) != true)) {
-                    this.LabelField = value;
-                    this.RaisePropertyChanged("Label");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="Remote.ILoaderService")]
-    public interface ILoaderService {
+    internal interface ILoaderService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/GetExistingNodeIds", ReplyAction="http://tempuri.org/ILoaderService/GetExistingNodeIdsResponse")]
-        long[] GetExistingNodeIds();
+        System.Collections.Generic.List<long> GetExistingNodeIds();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/GetExistingNodeIds", ReplyAction="http://tempuri.org/ILoaderService/GetExistingNodeIdsResponse")]
-        System.Threading.Tasks.Task<long[]> GetExistingNodeIdsAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.List<long>> GetExistingNodeIdsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/LoadNodes", ReplyAction="http://tempuri.org/ILoaderService/LoadNodesResponse")]
-        void LoadNodes(Massive.Interview.LoaderApp.Remote.NodeInputData[] nodeinputs);
+        void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/LoadNodes", ReplyAction="http://tempuri.org/ILoaderService/LoadNodesResponse")]
-        System.Threading.Tasks.Task LoadNodesAsync(Massive.Interview.LoaderApp.Remote.NodeInputData[] nodeinputs);
+        System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ILoaderServiceChannel : Massive.Interview.LoaderApp.Remote.ILoaderService, System.ServiceModel.IClientChannel {
+    internal interface ILoaderServiceChannel : Massive.Interview.LoaderApp.Remote.ILoaderService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class LoaderServiceClient : System.ServiceModel.ClientBase<Massive.Interview.LoaderApp.Remote.ILoaderService>, Massive.Interview.LoaderApp.Remote.ILoaderService {
+    internal partial class LoaderServiceClient : System.ServiceModel.ClientBase<Massive.Interview.LoaderApp.Remote.ILoaderService>, Massive.Interview.LoaderApp.Remote.ILoaderService {
         
         public LoaderServiceClient() {
         }
@@ -134,19 +55,19 @@ namespace Massive.Interview.LoaderApp.Remote {
                 base(binding, remoteAddress) {
         }
         
-        public long[] GetExistingNodeIds() {
+        public System.Collections.Generic.List<long> GetExistingNodeIds() {
             return base.Channel.GetExistingNodeIds();
         }
         
-        public System.Threading.Tasks.Task<long[]> GetExistingNodeIdsAsync() {
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<long>> GetExistingNodeIdsAsync() {
             return base.Channel.GetExistingNodeIdsAsync();
         }
         
-        public void LoadNodes(Massive.Interview.LoaderApp.Remote.NodeInputData[] nodeinputs) {
+        public void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs) {
             base.Channel.LoadNodes(nodeinputs);
         }
         
-        public System.Threading.Tasks.Task LoadNodesAsync(Massive.Interview.LoaderApp.Remote.NodeInputData[] nodeinputs) {
+        public System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs) {
             return base.Channel.LoadNodesAsync(nodeinputs);
         }
     }

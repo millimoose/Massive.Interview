@@ -6,6 +6,7 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
+using Massive.Interview.Service.Contract;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Service
@@ -21,17 +22,27 @@ namespace Massive.Interview.Service
 
         public async Task<GraphData> GetGraphAsync()
         {
-            var result = new GraphData();
-            result.Nodes = await (from dbNode in _db.Nodes
-                                  select new NodeData { Id = dbNode.NodeId.Value, Label = dbNode.Label })
-                                  .ToArrayAsync();
-            result.AdjacentNodes = await (from dbAdjacent in _db.AdjacentNodes
-                                          select new AdjacentNodeData {
-                                              LeftId = dbAdjacent.LeftNodeId.Value,
-                                              RightId = dbAdjacent.RightNodeId.Value
-                                          }).ToArrayAsync();
+            var nodes = (from dbNode in _db.Nodes
+                         select new NodeData
+                         {
+                             Id = dbNode.NodeId.Value,
+                             Label = dbNode.Label
+                         }).ToListAsync();
 
-            return result;
+            var adjacents = (from dbAdjacent in _db.AdjacentNodes
+                             select new AdjacentNodeData
+                             {
+                                 LeftId = dbAdjacent.LeftNodeId.Value,
+                                 RightId = dbAdjacent.RightNodeId.Value
+                             }).ToListAsync();
+
+            await Task.WhenAll(nodes, adjacents).ConfigureAwait(false);
+
+            return new GraphData
+            {
+                Nodes = nodes.Result,
+                AdjacentNodes = adjacents.Result
+            };
         }
     }
 }

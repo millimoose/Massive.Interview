@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Massive.Interview.Interview.Service.Support;
 using Massive.Interview.Service;
+using Massive.Interview.Service.Contract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Massive.Interview.LoaderApp.Tests

@@ -123,7 +123,7 @@ namespace Massive.Interview.LoaderApp.Tests
             await WithStreamAsync(_emptyAdjacentIds, async stream =>
             {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
-                CollectionAssert.AreEquivalent(new long[0], node.AdjacentNodeIds);
+                CollectionAssert.AreEquivalent(new long[0], node.AdjacentNodeIds.ToArray());
             }).ConfigureAwait(false);
         }
     }

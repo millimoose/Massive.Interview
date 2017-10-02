@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Massive.Interview.Service.Contract\Massive.Interview.Service.Contract.csproj">
+      <Project>{9b04011c-4c10-4f20-96bd-c315f7e78191}</Project>
+      <Name>Massive.Interview.Service.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Massive.Interview.Service\Massive.Interview.Service.csproj">
       <Project>{c13776c7-6252-4ea7-8856-91eb4463bf19}</Project>
       <Name>Massive.Interview.Service</Name>

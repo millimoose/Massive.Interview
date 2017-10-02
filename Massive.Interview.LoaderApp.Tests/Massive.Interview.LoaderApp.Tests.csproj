@@ -46,6 +46,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.4.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -54,12 +57,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Massive.Interview.LoaderApp\Massive.Interview.LoaderApp.csproj">
-      <Project>{694fac58-7688-4f3f-b3e0-b49cb752f549}</Project>
+      <Project>{a025f8eb-008d-49d2-8eef-f0ce544bbd99}</Project>
       <Name>Massive.Interview.LoaderApp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Massive.Interview.Service.Contract\Massive.Interview.Service.Contract.csproj">
+      <Project>{9B04011C-4C10-4F20-96BD-C315F7E78191}</Project>
+      <Name>Massive.Interview.Service.Contract</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

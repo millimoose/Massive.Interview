@@ -6,13 +6,13 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Massive.Interview.Service
+namespace Massive.Interview.Service.Contract
 {
     [ServiceContract]
-    public interface ILoaderService
+    internal interface ILoaderService
     {
         [OperationContract]
-        Task<long[]> GetExistingNodeIdsAsync();
+        Task<IEnumerable<long>> GetExistingNodeIdsAsync();
 
         [OperationContract]
         Task LoadNodesAsync(IEnumerable<NodeInputData> nodeinputs);
@@ -41,7 +41,12 @@ namespace Massive.Interview.Service
         /// The IDs of the adjacent nodes.
         /// </summary>
         [DataMember]
+        public IEnumerable<long> AdjacentNodeIds { get; set; } = Enumerable.Empty<long>();
 
-        public ICollection<long> AdjacentNodeIds { get; set; } = new List<long>();
+        /// <summary>
+        /// A description of the source where the node input was read from.
+        /// </summary>
+        [DataMember]
+        public string Source { get; set; }
     }
 }
