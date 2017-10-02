@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using Massive.Interview.LoaderApp.Remote;
@@ -53,17 +54,24 @@ namespace Massive.Interview.LoaderApp.Support
         {
             var empty = reader.IsEmptyElement;
             reader.ReadStartElement("adjacentNodes");
-
-            var ids = new List<long>();
-            if (empty) return;
-
-            while (reader.IsStartElement("id"))
+ 
+            if (empty)
             {
-                ids.Add(reader.ReadElementContentAsLong());
+                result.AdjacentNodeIds = new long[0];
+                return;
             }
-            result.AdjacentNodeIds = ids.ToArray();
+
+            result.AdjacentNodeIds = ReadIdList(reader).ToArray();
             reader.ReadEndElement();
 
+        }
+
+        private IEnumerable<long> ReadIdList(XmlReader reader)
+        {
+            while (reader.IsStartElement("id"))
+            {
+                yield return reader.ReadElementContentAsLong();
+            }
         }
     }
 }
