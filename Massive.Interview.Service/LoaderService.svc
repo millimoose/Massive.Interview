@@ -1,0 +1,6 @@
+﻿<%@ ServiceHost
+    Language="C#"
+    Debug="true"
+    Service="Massive.Interview.Service.LoaderService, Massive.Interview.Service"
+    CodeBehind="LoaderService.svc.cs"
+    Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>
