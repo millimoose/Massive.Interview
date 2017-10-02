@@ -18,8 +18,7 @@ namespace Massive.Interview.Entities.Module
         
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(ctx => new GraphEntities(Settings.ConnectionString))
-                .InstancePerMatchingLifetimeScope(nameof(DbContext))
+            builder.Register(ctx => new GraphEntities(Settings.ConnectionString)).InstancePerLifetimeScope()
                 .AsSelf();
         }
     }
