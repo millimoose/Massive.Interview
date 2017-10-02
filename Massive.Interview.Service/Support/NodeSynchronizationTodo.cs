@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.Service;
+using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.Interview.Service.Support
 {
@@ -28,7 +29,7 @@ namespace Massive.Interview.Interview.Service.Support
         public ReadOnlyCollection<long> NodeIdsToRemove { get; }
 
         /// <summary>
-        /// Create a set of synmchronisation operations based on node IDs 
+        /// Create a set of synchronisation operations based on node IDs 
         /// currently in the database, and loaded nodes.
         /// </summary>
         /// <param name="oldNodeIds">previous node IDs</param>

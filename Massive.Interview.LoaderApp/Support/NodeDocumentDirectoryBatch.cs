@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Massive.Interview.LoaderApp.Remote;
+using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
 {
@@ -42,7 +43,7 @@ namespace Massive.Interview.LoaderApp.Support
             using (var stream = file.OpenRead())
             {
                 NodeInputData task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
-                task.Source = file.FullName;
+                task.Source = file.Name;
                 return task;
             }
         }

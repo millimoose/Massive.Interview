@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.LoaderApp.Remote;
+using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
 {

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Autofac;
 using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.LoaderApp.Support;
+using Massive.Interview.Service.Contract;
 using Microsoft.Extensions.Configuration;
 
 [assembly: InternalsVisibleTo("Massive.Interview.LoaderApp.Tests")]
@@ -14,9 +16,9 @@ namespace Massive.Interview.LoaderApp
     class Program
     {
         readonly INodeDocumentBatch _batch;
-        private readonly ILoaderService _loaderService;
+        private readonly Remote.ILoaderService _loaderService;
 
-        public Program(INodeDocumentBatch batch, ILoaderService loaderService)
+        public Program(INodeDocumentBatch batch, Remote.ILoaderService loaderService)
         {
             _batch = batch ?? throw new ArgumentNullException(nameof(batch));
             _loaderService = loaderService;
@@ -48,10 +50,14 @@ namespace Massive.Interview.LoaderApp
             return result;
         }
         
+        /// <summary>
+        /// Load node descriptions and send them to the loader service.
+        /// </summary>
+        /// <returns></returns>
         private async Task SynchronizeAsync()
         {
             var inputs = await _batch.LoadDocumentsAsync().ConfigureAwait(false);
-            await _loaderService.LoadNodesAsync(inputs).ConfigureAwait(false);
+            await _loaderService.LoadNodesAsync(inputs.ToList()).ConfigureAwait(false);
 
         }
     }

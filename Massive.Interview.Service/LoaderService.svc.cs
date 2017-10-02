@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
 using Massive.Interview.Interview.Service.Support;
+using Massive.Interview.Service.Contract;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Service
@@ -24,9 +25,10 @@ namespace Massive.Interview.Service
             _synchronizer = synchronizer;
         }
 
-        public async Task<long[]> GetExistingNodeIdsAsync()
+        public async Task<IEnumerable<long>> GetExistingNodeIdsAsync()
         {
-            return await (from dbNode in _db.Nodes select dbNode.NodeId.Value).ToArrayAsync();
+            return await (from dbNode in _db.Nodes select dbNode.NodeId.Value)
+                .ToArrayAsync().ConfigureAwait(false);
         }
 
         public async Task LoadNodesAsync(IEnumerable<NodeInputData> nodeinputs)
