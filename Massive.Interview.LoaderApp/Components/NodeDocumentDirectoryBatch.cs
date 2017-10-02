@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -38,6 +39,7 @@ namespace Massive.Interview.LoaderApp.Components
         /// </summary>
         private async Task<NodeInput> LoadDocumentAsync(FileInfo file)
         {
+            Trace.TraceInformation($"NodeDocumentDirectoryBatch.LoadDocumentAsync(file: {file.Name})");
             using (var stream = file.OpenRead())
             {
                 NodeInput task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);

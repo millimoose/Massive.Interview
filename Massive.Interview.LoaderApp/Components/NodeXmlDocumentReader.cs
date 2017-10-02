@@ -25,7 +25,6 @@ namespace Massive.Interview.LoaderApp.Components
             {
                 var result = new NodeInput();
 
-                // move to root element
                 reader.ReadStartElement("node");
                 while (reader.IsStartElement())
                 {
@@ -38,9 +37,7 @@ namespace Massive.Interview.LoaderApp.Components
                             result.Label = await reader.ReadElementContentAsStringAsync().ConfigureAwait(false);
                             break;
                         case "adjacentNodes":
-                            reader.ReadStartElement("adjacentNodes");
                             ParseAdjacentNodes(reader, result);
-                            reader.ReadEndElement();
                             break;
                         default:
                             throw new ArgumentOutOfRangeException("reader.Name", reader.Name, "Unexpected element name");
@@ -54,10 +51,16 @@ namespace Massive.Interview.LoaderApp.Components
 
         private void ParseAdjacentNodes(XmlReader reader, NodeInput result)
         {
+            var empty = reader.IsEmptyElement;
+            reader.ReadStartElement("adjacentNodes");
+            if (empty) return;
+
             while (reader.IsStartElement("id"))
             {
                 result.AdjacentNodeIds.Add(reader.ReadElementContentAsLong());
             }
+            reader.ReadEndElement();
+
         }
     }
 }
