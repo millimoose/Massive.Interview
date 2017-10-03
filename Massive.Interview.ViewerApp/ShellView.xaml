@@ -6,8 +6,8 @@
     xmlns:local="clr-namespace:Massive.Interview.ViewerApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="{d:DesignInstance {x:Type local:ShellViewModel}}"
-    d:DesignHeight="300"
-    d:DesignWidth="300"
+    d:DesignHeight="600"
+    d:DesignWidth="600"
     Loaded="UserControl_Loaded"
     mc:Ignorable="d">
     <Grid>
@@ -19,12 +19,15 @@
             <ColumnDefinition />
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-        <WindowsFormsHost x:Name="GraphHost" Grid.ColumnSpan="2" />
+        <WindowsFormsHost
+            x:Name="GraphHost"
+            Grid.ColumnSpan="2"
+            MinWidth="600"
+            MinHeight="560" />
         <Button
             Grid.Row="1"
             Grid.Column="1"
-            Margin="10"
-            Panel.ZIndex="1">
+            Margin="10">
             Shortest Path
         </Button>
     </Grid>
