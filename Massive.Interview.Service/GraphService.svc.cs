@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Linq;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Service
 {
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     class GraphService : IGraphService
     {
         readonly GraphEntities _db;
