@@ -12,24 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Microsoft.Msagl.Drawing;
-using Microsoft.Msagl.GraphViewerGdi;
 
 namespace Massive.Interview.ViewerApp
 {
     /// <summary>
-    /// Interaction logic for ShellView.xaml
+    /// Interaction logic for ScratchView.xaml
     /// </summary>
-    public partial class ShellView : UserControl
+    public partial class ScratchView : UserControl
     {
-        private ShellViewModel ViewModel { get => (ShellViewModel) DataContext; }
-
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        public ScratchView()
         {
-            var viewer = new GViewer {
-                Graph = ViewModel.AglGraph
-            };
-            GraphHost.Child = viewer;
+            InitializeComponent();
         }
     }
 }
