@@ -3,7 +3,7 @@
     public class GraphEntitiesSettings
     {
         /// <summary>
-        /// The connection string to initialize the <c>DbContext</c>.
+        /// The connection string to initialize the <see cref="GraphEntities"/> context with.
         /// </summary>
         public string ConnectionString { get; set; }
     }

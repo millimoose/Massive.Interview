@@ -14,11 +14,11 @@ namespace Massive.Interview.LoaderApp.Tests
     {
         INodeDocumentReader reader = new NodeXmlDocumentReader();
 
-        private Task WithStreamAsync(string xmlString, Func<Stream, Task> func)
+        private async Task WithStreamAsync(string xmlString, Func<Stream, Task> func)
         {
             using (var stream = new MemoryStream(Encoding.UTF8.GetBytes(xmlString)))
             {
-                return func(stream);
+                await func(stream);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Massive.Interview.LoaderApp.Tests
             }).ConfigureAwait(false);
         }
 
-        static readonly string _invalidRootNode=
+        static readonly string _invalidRootNode =
 @"<?xml version=""1.0"" encoding=""utf-8""?>
 <done>
     <id>1</id>
@@ -64,7 +64,8 @@ namespace Massive.Interview.LoaderApp.Tests
         [ExpectedException(typeof(XmlException))]
         public async Task Parse_invalid_root_node()
         {
-            await WithStreamAsync(_invalidRootNode, async stream => {
+            await WithStreamAsync(_invalidRootNode, async stream =>
+            {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }

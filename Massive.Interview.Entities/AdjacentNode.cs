@@ -9,27 +9,27 @@ using System.Threading.Tasks;
 namespace Massive.Interview.Entities
 {
     /// <summary>
-    /// Join entity representing vertices between nodes.
+    /// Join entity representing edges between nodes.
     /// </summary>
     public class AdjacentNode : IFormattable
     {
         /// <summary>
-        /// ID of the node on the left side of the vertex. (The node with the lesser ID.)
+        /// ID of the node on the left side of the edge. (The node with the lesser ID.)
         /// </summary>
         public long? LeftNodeId { get; set; }
 
         /// <summary>
-        /// The node on the left side of the vertex. (The node with the lesser ID.)
+        /// The node on the left side of the edge. (The node with the lesser ID.)
         /// </summary>
         public Node LeftNode { get; set; }
 
         /// <summary>
-        /// ID of the node on the right side of the vertex. (The node with the greater ID.)
+        /// ID of the node on the right side of the edge. (The node with the greater ID.)
         /// </summary>
         public long? RightNodeId { get; set; }
 
         /// <summary>
-        /// The node on the right side of the vertex. (The node with the greater ID.)
+        /// The node on the right side of the edge. (The node with the greater ID.)
         /// </summary>
         public Node RightNode { get; set; }
 
@@ -68,9 +68,9 @@ namespace Massive.Interview.Entities
         /// <summary>
         /// Correctly set up an adjacency in the graph.
         /// </summary>
-        /// Ensures sure that the node to the left of the adjacency has a 
-        /// lesser ID than the node to the right.
-        public static async Task MakeAdjacentAsync(this DbSet<AdjacentNode> dbNodes, long leftId, long rightId)
+        /// Ensures that the node to the left of the adjacency has a lesser ID 
+        /// than the node to the right.
+        public static async Task MakeAdjacentAsync(this DbSet<AdjacentNode> dbAdjacents, long leftId, long rightId)
         {
             // swap nodes if neccessary
             if (leftId > rightId)
@@ -78,11 +78,17 @@ namespace Massive.Interview.Entities
                 (leftId, rightId) = (rightId, leftId);
             }
 
-            var exists = null != await dbNodes.FindAsync(leftId, rightId).ConfigureAwait(false);
+            var oldNodeQuery = from dbAdjacent in dbAdjacents
+                               where dbAdjacent.LeftNodeId == leftId
+                                  && dbAdjacent.RightNodeId == rightId
+                               select dbAdjacent;
+            var oldNode = await oldNodeQuery.SingleOrDefaultAsync().ConfigureAwait(false);
+            
 
-            if (!exists)
+            if (oldNode != null)
             {
-                await dbNodes.AddAsync(new AdjacentNode { LeftNodeId = leftId, RightNodeId = rightId }).ConfigureAwait(false);
+                var newNode = new AdjacentNode { LeftNodeId = leftId, RightNodeId = rightId };
+                await dbAdjacents.AddAsync(newNode).ConfigureAwait(false);
             }
             return;
         }

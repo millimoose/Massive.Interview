@@ -19,7 +19,7 @@ namespace Massive.Interview.LoaderApp.Tests
             [SuppressMessage("", "CS1998")]
             public async Task<NodeInputData> ParseNodeInputAsync(Stream inputStream)
             {
-                return new NodeInputData();
+                return await Task.FromResult(new NodeInputData()).ConfigureAwait(false);
             }
         }
 
