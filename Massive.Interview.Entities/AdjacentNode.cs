@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
@@ -83,7 +81,7 @@ namespace Massive.Interview.Entities
                                   && dbAdjacent.RightNodeId == rightId
                                select dbAdjacent;
             var oldNode = await oldNodeQuery.SingleOrDefaultAsync().ConfigureAwait(false);
-            
+
 
             if (oldNode != null)
             {

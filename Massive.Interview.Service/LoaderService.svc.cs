@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.Text;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
 using Massive.Interview.Interview.Service.Support;
@@ -27,8 +25,8 @@ namespace Massive.Interview.Service
 
         public async Task<IEnumerable<long>> GetExistingNodeIdsAsync()
         {
-            return await (from dbNode in _db.Nodes select dbNode.NodeId.Value)
-                .ToArrayAsync().ConfigureAwait(false);
+            var nodesQuery = from dbNode in _db.Nodes.AsNoTracking() select dbNode.NodeId.Value;
+            return await nodesQuery.ToListAsync().ConfigureAwait(false);
         }
 
         public async Task LoadNodesAsync(IEnumerable<NodeInputData> nodeinputs)

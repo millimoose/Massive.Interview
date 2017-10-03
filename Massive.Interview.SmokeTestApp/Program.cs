@@ -2,7 +2,6 @@
 using Massive.Interview.Entities;
 using Massive.Interview.Entities.Module;
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,7 @@ namespace Massive.Interview.SmokeTestApp
     {
         public static void Main(string[] args)
         {
-            SmokeTestSettings settings = NewSettings(args);
+            var settings = NewSettings(args);
 
             var builder = new ContainerBuilder();
             builder.RegisterModule(new GraphEntitiesModule(settings.Entities));
@@ -56,47 +55,44 @@ namespace Massive.Interview.SmokeTestApp
             }
         }
 
-        private GraphEntities Context { get; }
+        readonly GraphEntities _context;
         public Program(GraphEntities context)
         {
-            Context = context;
+            _context = context;
         }
 
         private void CreateSomeNodes()
         {
-            Context.Database.EnsureCreated();
-            Context.RemoveRange(Context.AdjacentNodes);
-            Context.RemoveRange(Context.Nodes);
-            Context.SaveChanges();
-            var left = new Node
-            {
+            _context.Database.EnsureCreated();
+            _context.RemoveRange(_context.AdjacentNodes);
+            _context.RemoveRange(_context.Nodes);
+            _context.SaveChanges();
+            var left = new Node {
                 NodeId = 1,
                 Label = "Node1"
             };
-            Context.Nodes.Add(left);
+            _context.Nodes.Add(left);
 
-            var right = new Node
-            {
+            var right = new Node {
                 NodeId = 2,
                 Label = "Node2"
             };
 
-            var link = new AdjacentNode
-            {
+            var link = new AdjacentNode {
                 LeftNode = left,
                 RightNode = right
             };
-            Context.Add(link);
+            _context.Add(link);
 
-            Context.SaveChanges();
+            _context.SaveChanges();
         }
 
         private void RemoveLink()
         {
-            var node1 = Context.Nodes.Find(1L);
-            Context.RemoveRange(node1.LeftAdjacentNodes);
-            Context.RemoveRange(node1.RightAdjacentNodes);
-            var node2 = Context.Nodes.Find(2L);
+            var node1 = _context.Nodes.Find(1L);
+            _context.RemoveRange(node1.LeftAdjacentNodes);
+            _context.RemoveRange(node1.RightAdjacentNodes);
+            var node2 = _context.Nodes.Find(2L);
             Console.WriteLine(node1);
             Console.WriteLine(node2);
         }

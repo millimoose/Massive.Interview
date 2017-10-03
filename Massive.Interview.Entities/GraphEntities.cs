@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Globalization;
 using Microsoft.EntityFrameworkCore;
-
-using Massive.Interview.Support;
-using Microsoft.EntityFrameworkCore.Design;
 
 namespace Massive.Interview.Entities
 {
@@ -22,7 +14,8 @@ namespace Massive.Interview.Entities
 
         internal GraphEntities() { }
 
-        public GraphEntities(string connectionString) {
+        public GraphEntities(string connectionString)
+        {
             _connectionString = connectionString;
         }
 

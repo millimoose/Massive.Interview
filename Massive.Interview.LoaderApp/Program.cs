@@ -1,12 +1,9 @@
 ﻿using System;
-using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Autofac;
-using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.LoaderApp.Support;
-using Massive.Interview.Service.Contract;
 using Microsoft.Extensions.Configuration;
 
 [assembly: InternalsVisibleTo("Massive.Interview.LoaderApp.Tests")]
@@ -49,7 +46,7 @@ namespace Massive.Interview.LoaderApp
             config.Bind(result);
             return result;
         }
-        
+
         /// <summary>
         /// Load node descriptions and send them to the loader service.
         /// </summary>

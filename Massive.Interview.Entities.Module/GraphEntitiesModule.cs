@@ -1,6 +1,4 @@
 ﻿using Autofac;
-using System;
-using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Entities.Module
 {
@@ -15,10 +13,11 @@ namespace Massive.Interview.Entities.Module
         {
             Settings = settings;
         }
-        
+
         protected override void Load(ContainerBuilder builder)
         {
-            builder.Register(ctx => new GraphEntities(Settings.ConnectionString)).InstancePerLifetimeScope()
+            builder.Register(ctx => new GraphEntities(Settings.ConnectionString))
+                .InstancePerLifetimeScope()
                 .AsSelf();
         }
     }

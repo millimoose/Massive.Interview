@@ -3,7 +3,7 @@ using Massive.Interview.Interview.Service.Support;
 
 namespace Massive.Interview.Service
 {
-    class GraphServiceModule : Autofac.Module
+    class GraphServiceModule : Module
     {
         protected override void Load(ContainerBuilder builder)
         {

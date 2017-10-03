@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
-using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
@@ -18,7 +16,7 @@ namespace Massive.Interview.LoaderApp.Support
     {
         public async Task<NodeInputData> ParseNodeInputAsync(Stream inputStream)
         {
-            XmlReaderSettings settings = new XmlReaderSettings {
+            var settings = new XmlReaderSettings {
                 Async = true,
                 IgnoreWhitespace = true
             };
@@ -30,7 +28,7 @@ namespace Massive.Interview.LoaderApp.Support
                 reader.ReadStartElement("node");
                 while (reader.IsStartElement())
                 {
-                    switch(reader.Name)
+                    switch (reader.Name)
                     {
                         case "id":
                             result.Id = reader.ReadElementContentAsLong();
@@ -43,7 +41,7 @@ namespace Massive.Interview.LoaderApp.Support
                             break;
                         default:
                             throw new ArgumentOutOfRangeException("reader.Name", reader.Name, "Unexpected element name");
-                        
+
                     }
                 }
                 reader.ReadEndElement();
@@ -55,7 +53,7 @@ namespace Massive.Interview.LoaderApp.Support
         {
             var empty = reader.IsEmptyElement;
             reader.ReadStartElement("adjacentNodes");
- 
+
             if (empty)
             {
                 return;
