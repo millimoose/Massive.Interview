@@ -8,7 +8,7 @@
     <ProjectGuid>{9B04011C-4C10-4F20-96BD-C315F7E78191}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Massive.Interview.Service.Contract</RootNamespace>
+    <RootNamespace>Massive.Interview.Service</RootNamespace>
     <AssemblyName>Massive.Interview.Service.Contract</AssemblyName>
     <ProjectTypeGuids>{3D9AD99F-2412-4246-B90B-4EAA41C64699};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <StartArguments>/client:"WcfTestClient.exe"</StartArguments>
@@ -49,6 +49,7 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="IGraphService.cs" />
     <Compile Include="ILoaderService.cs" />
+    <Compile Include="IPathService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

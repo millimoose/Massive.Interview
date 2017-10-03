@@ -9,6 +9,7 @@ namespace Massive.Interview.Service
         {
             builder.RegisterType<LoaderService>().AsSelf();
             builder.RegisterType<GraphService>().AsSelf();
+            builder.RegisterType<PathService>().AsSelf();
             builder.RegisterType<NodeSynchronizer>().AsImplementedInterfaces();
         }
     }
