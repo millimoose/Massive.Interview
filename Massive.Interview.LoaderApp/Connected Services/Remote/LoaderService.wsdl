@@ -5,7 +5,7 @@
       <xsd:import schemaLocation="http://localhost:6555/LoaderService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:6555/LoaderService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:6555/LoaderService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-      <xsd:import schemaLocation="http://localhost:6555/LoaderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Massive.Interview.Service.Contract" />
+      <xsd:import schemaLocation="http://localhost:6555/LoaderService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Massive.Interview.Service" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ILoaderService_GetExistingNodeIds_InputMessage">
@@ -30,7 +30,7 @@
       <wsdl:output wsaw:Action="http://tempuri.org/ILoaderService/LoadNodesResponse" message="tns:ILoaderService_LoadNodes_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_ILoaderService" type="tns:ILoaderService">
+  <wsdl:binding name="LoaderService" type="tns:ILoaderService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetExistingNodeIds">
       <soap:operation soapAction="http://tempuri.org/ILoaderService/GetExistingNodeIds" style="document" />
@@ -52,7 +52,7 @@
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="LoaderService">
-    <wsdl:port name="BasicHttpBinding_ILoaderService" binding="tns:BasicHttpBinding_ILoaderService">
+    <wsdl:port name="LoaderService" binding="tns:LoaderService">
       <soap:address location="http://localhost:6555/LoaderService.svc" />
     </wsdl:port>
   </wsdl:service>

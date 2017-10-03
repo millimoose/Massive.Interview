@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using Massive.Interview.Service.Contract;
 
-namespace Massive.Interview.Interview.Service.Support
+namespace Massive.Interview.Service.Support
 {
     /// <summary>
     /// The set of operations that will synchronize the database with loaded input data.

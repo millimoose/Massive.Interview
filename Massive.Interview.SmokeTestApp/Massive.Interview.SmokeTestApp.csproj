@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <StartupObject>Massive.Interview.SmokeTestApp.Program</StartupObject>
     <RunWorkingDirectory>$(MSBuildThisFileDirectory)</RunWorkingDirectory>
+    <CodeAnalysisRuleSet>..\Massive.Interview.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Massive.Interview.Entities.Module\Massive.Interview.Entities.Module.csproj" />
+    <ProjectReference Include="..\Massive.Interview.Entities.Autofac\Massive.Interview.Entities.Autofac.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,15 +1,15 @@
 ﻿using System.Linq;
-using Massive.Interview.Interview.Service.Support;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service;
+using Massive.Interview.Service.Support;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Massive.Interview.LoaderApp.Tests
 {
     [TestClass]
-    public class NodeSynchronizationTodoTest
+    public class NodeSynchronizationToDoTest
     {
         [TestMethod]
-        public void Create_todo()
+        public void CreateToDo()
         {
             var previousIds = new long[] { 1, 2, 3, 4 };
             var newIds = new long[] { 3, 4, 5, 6 };

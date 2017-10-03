@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service;
 
 namespace Massive.Interview.LoaderApp.Support
 {
@@ -41,7 +41,7 @@ namespace Massive.Interview.LoaderApp.Support
             Trace.TraceInformation($"NodeDocumentDirectoryBatch.LoadDocumentAsync(file: {file.Name})");
             using (var stream = file.OpenRead())
             {
-                NodeInputData task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var task = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
                 task.Source = file.Name;
                 return task;
             }

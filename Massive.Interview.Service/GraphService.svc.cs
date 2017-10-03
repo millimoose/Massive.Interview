@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
-using Massive.Interview.Service.Contract;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Service

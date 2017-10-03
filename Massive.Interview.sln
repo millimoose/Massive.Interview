@@ -2,13 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Entities", "Massive.Interview.Entities\Massive.Interview.Entities.csproj", "{09FADAA3-D021-4380-B3DD-14C4D2A6E074}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Massive.Interview.Entities", "Massive.Interview.Entities\Massive.Interview.Entities.csproj", "{09FADAA3-D021-4380-B3DD-14C4D2A6E074}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Entities.Module", "Massive.Interview.Entities.Module\Massive.Interview.Entities.Module.csproj", "{8191FA40-E687-4F9E-BB70-46B9B8C0406C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Massive.Interview.SmokeTestApp", "Massive.Interview.SmokeTestApp\Massive.Interview.SmokeTestApp.csproj", "{92CFCE1C-628E-492D-B299-278BA7EB01E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.SmokeTestApp", "Massive.Interview.SmokeTestApp\Massive.Interview.SmokeTestApp.csproj", "{92CFCE1C-628E-492D-B299-278BA7EB01E9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Support", "Massive.Interview.Support\Massive.Interview.Support.csproj", "{C3B3789B-DE52-4B7E-9855-24FBD5439741}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Massive.Interview.Support", "Massive.Interview.Support\Massive.Interview.Support.csproj", "{C3B3789B-DE52-4B7E-9855-24FBD5439741}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Service", "Massive.Interview.Service\Massive.Interview.Service.csproj", "{C13776C7-6252-4EA7-8856-91EB4463BF19}"
 EndProject
@@ -22,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.LoaderApp
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Massive.Interview.Service.Contract", "Massive.Interview.Service.Contract\Massive.Interview.Service.Contract.csproj", "{9B04011C-4C10-4F20-96BD-C315F7E78191}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Massive.Interview.Entities.Autofac", "Massive.Interview.Entities.Autofac\Massive.Interview.Entities.Autofac.csproj", "{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,18 +45,6 @@ Global
 		{09FADAA3-D021-4380-B3DD-14C4D2A6E074}.Release|x64.Build.0 = Release|Any CPU
 		{09FADAA3-D021-4380-B3DD-14C4D2A6E074}.Release|x86.ActiveCfg = Release|Any CPU
 		{09FADAA3-D021-4380-B3DD-14C4D2A6E074}.Release|x86.Build.0 = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|x64.Build.0 = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Debug|x86.Build.0 = Debug|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|x64.ActiveCfg = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|x64.Build.0 = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|x86.ActiveCfg = Release|Any CPU
-		{8191FA40-E687-4F9E-BB70-46B9B8C0406C}.Release|x86.Build.0 = Release|Any CPU
 		{92CFCE1C-628E-492D-B299-278BA7EB01E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{92CFCE1C-628E-492D-B299-278BA7EB01E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92CFCE1C-628E-492D-B299-278BA7EB01E9}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -141,6 +129,18 @@ Global
 		{9B04011C-4C10-4F20-96BD-C315F7E78191}.Release|x64.Build.0 = Release|Any CPU
 		{9B04011C-4C10-4F20-96BD-C315F7E78191}.Release|x86.ActiveCfg = Release|Any CPU
 		{9B04011C-4C10-4F20-96BD-C315F7E78191}.Release|x86.Build.0 = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|x64.Build.0 = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Debug|x86.Build.0 = Debug|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|x64.ActiveCfg = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|x64.Build.0 = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|x86.ActiveCfg = Release|Any CPU
+		{5629E3CF-2DB4-41BD-BFCE-F45FF058553F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,8 +4,7 @@ using System.Linq;
 using System.ServiceModel;
 using System.Threading.Tasks;
 using Massive.Interview.Entities;
-using Massive.Interview.Interview.Service.Support;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service.Support;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Service

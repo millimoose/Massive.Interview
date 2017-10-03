@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
-namespace Massive.Interview.Service.Contract
+namespace Massive.Interview.Service
 {
     /// <summary>
     /// A service for loading the graph in a front-end.

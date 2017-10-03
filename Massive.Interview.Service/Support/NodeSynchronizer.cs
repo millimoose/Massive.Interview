@@ -4,10 +4,9 @@ using System.Collections.Generic;
 using Massive.Interview.Entities;
 using Z.EntityFramework.Plus;
 using System.Threading.Tasks;
-using Massive.Interview.Service.Contract;
 using Microsoft.EntityFrameworkCore;
 
-namespace Massive.Interview.Interview.Service.Support
+namespace Massive.Interview.Service.Support
 {
     class NodeSynchronizer : INodeSynchronizer
     {
@@ -58,7 +57,7 @@ namespace Massive.Interview.Interview.Service.Support
         /// <summary>
         /// Convert <see cref="NodeInputData"/>s to a <see cref="Node"/>s.
         /// </summary>
-        private IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInputData> inputs) =>
+        private static IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInputData> inputs) =>
              from input in inputs
              select new Node {
                  NodeId = input.Id,

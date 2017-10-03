@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using Massive.Interview.Service;
-using Massive.Interview.Service.Contract;
 
-namespace Massive.Interview.Interview.Service.Support
+namespace Massive.Interview.Service.Support
 {
     /// <summary>
     /// Executes a set of synchronization operations.

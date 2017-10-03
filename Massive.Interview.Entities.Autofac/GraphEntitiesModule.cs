@@ -1,11 +1,13 @@
-﻿using Autofac;
+﻿using System;
+using System.Runtime.InteropServices;
+using Autofac;
 
-namespace Massive.Interview.Entities.Module
+namespace Massive.Interview.Entities.Autofac
 {
     /// <summary>
     /// An Autofac module that registers the EF <see cref="DbContext"/> for the graph model.
     /// </summary>
-    public class GraphEntitiesModule : Autofac.Module
+    public class GraphEntitiesModule : global::Autofac.Module
     {
         public GraphEntitiesSettings Settings { get; }
 

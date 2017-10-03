@@ -19,8 +19,8 @@ namespace Massive.Interview.LoaderApp
         protected override void Load(ContainerBuilder builder)
         {
             builder.Register(ctx => {
-                INodeDocumentReader reader = ctx.Resolve<INodeDocumentReader>();
-                DirectoryInfo directory = new DirectoryInfo(_settings.InputDirectory);
+                var reader = ctx.Resolve<INodeDocumentReader>();
+                var directory = new DirectoryInfo(_settings.InputDirectory);
                 return new NodeDocumentDirectoryBatch(reader, directory, _settings.Pattern);
             }).AsImplementedInterfaces().AsSelf();
 

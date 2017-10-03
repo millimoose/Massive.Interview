@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <CodeAnalysisRuleSet>..\Massive.Interview.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
 
   <ItemGroup>

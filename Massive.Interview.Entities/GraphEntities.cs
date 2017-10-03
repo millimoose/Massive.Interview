@@ -1,3 +1,5 @@
+using System;
+using System.Runtime.InteropServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Entities
@@ -23,6 +25,7 @@ namespace Massive.Interview.Entities
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder = optionsBuilder ?? throw new ArgumentNullException(nameof(optionsBuilder));
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(_connectionString);
@@ -31,6 +34,7 @@ namespace Massive.Interview.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder = modelBuilder ?? throw new ArgumentNullException(nameof(modelBuilder));
 
             modelBuilder.Entity<AdjacentNode>()
                 .HasKey(_ => (new { _.LeftNodeId, _.RightNodeId }));
