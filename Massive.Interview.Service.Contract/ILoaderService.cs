@@ -4,7 +4,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
-namespace Massive.Interview.Service.Contract
+namespace Massive.Interview.Service
 {
     [ServiceContract]
     internal interface ILoaderService

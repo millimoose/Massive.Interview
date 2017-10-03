@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using System.Threading.Tasks;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service;
 
 namespace Massive.Interview.LoaderApp.Support
 {

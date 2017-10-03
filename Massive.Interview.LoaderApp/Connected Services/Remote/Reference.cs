@@ -22,10 +22,10 @@ namespace Massive.Interview.LoaderApp.Remote {
         System.Threading.Tasks.Task<System.Collections.Generic.List<long>> GetExistingNodeIdsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/LoadNodes", ReplyAction="http://tempuri.org/ILoaderService/LoadNodesResponse")]
-        void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs);
+        void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.NodeInputData> nodeinputs);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoaderService/LoadNodes", ReplyAction="http://tempuri.org/ILoaderService/LoadNodesResponse")]
-        System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs);
+        System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.NodeInputData> nodeinputs);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -63,11 +63,11 @@ namespace Massive.Interview.LoaderApp.Remote {
             return base.Channel.GetExistingNodeIdsAsync();
         }
         
-        public void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs) {
+        public void LoadNodes(System.Collections.Generic.List<Massive.Interview.Service.NodeInputData> nodeinputs) {
             base.Channel.LoadNodes(nodeinputs);
         }
         
-        public System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.Contract.NodeInputData> nodeinputs) {
+        public System.Threading.Tasks.Task LoadNodesAsync(System.Collections.Generic.List<Massive.Interview.Service.NodeInputData> nodeinputs) {
             return base.Channel.LoadNodesAsync(nodeinputs);
         }
     }

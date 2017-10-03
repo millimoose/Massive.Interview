@@ -42,7 +42,7 @@ namespace Massive.Interview.LoaderApp
                 .AddCommandLine(args)
                 .Build();
 
-            LoaderSettings result = new LoaderSettings();
+            var result = new LoaderSettings();
             config.Bind(result);
             return result;
         }

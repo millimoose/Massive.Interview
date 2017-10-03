@@ -60,7 +60,7 @@ namespace Massive.Interview.Entities
             }
         }
     }
-
+    
     public static class AdjacentNodeExtensions
     {
         /// <summary>

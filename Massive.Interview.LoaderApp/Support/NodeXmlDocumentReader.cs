@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service;
 
 namespace Massive.Interview.LoaderApp.Support
 {

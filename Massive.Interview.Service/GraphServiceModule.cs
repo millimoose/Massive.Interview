@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Massive.Interview.Interview.Service.Support;
+using Massive.Interview.Service.Support;
 
 namespace Massive.Interview.Service
 {

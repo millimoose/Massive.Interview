@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Massive.Interview.LoaderApp.Support;
-using Massive.Interview.Service.Contract;
+using Massive.Interview.Service;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Massive.Interview.LoaderApp.Tests
@@ -21,12 +21,12 @@ namespace Massive.Interview.LoaderApp.Tests
         }
 
         [TestMethod]
-        public async Task Load_XML_batch()
+        public async Task LoadXmlBatch()
         {
             var testDataDirectory =
                 new DirectoryInfo(Path.Combine(Environment.CurrentDirectory, "TestData"));
             var batch = new NodeDocumentDirectoryBatch(new MockNodeDocumentReader(), testDataDirectory, "*.xml");
-            NodeInputData[] nodes = await batch.LoadDocumentsAsync().ConfigureAwait(false);
+            var nodes = await batch.LoadDocumentsAsync().ConfigureAwait(false);
 
             Assert.AreEqual(2, nodes.Length);
             Assert.IsTrue(nodes.All(_ => !string.IsNullOrEmpty(_.Source)));

@@ -3,7 +3,7 @@ using System.Configuration;
 using Autofac;
 using Autofac.Integration.Wcf;
 using Massive.Interview.Entities;
-using Massive.Interview.Entities.Module;
+using Massive.Interview.Entities.Autofac;
 
 namespace Massive.Interview.Service
 {
@@ -19,7 +19,7 @@ namespace Massive.Interview.Service
             };
             builder.RegisterModule(new GraphEntitiesModule(settings));
             builder.RegisterModule<GraphServiceModule>();
-            IContainer container = builder.Build();
+            var container = builder.Build();
             using (var scope = container.BeginLifetimeScope())
             {
                 scope.Resolve<GraphEntities>().Database.EnsureCreated();

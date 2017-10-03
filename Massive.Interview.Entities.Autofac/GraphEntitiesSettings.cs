@@ -1,4 +1,4 @@
-﻿namespace Massive.Interview.Entities.Module
+﻿namespace Massive.Interview.Entities.Autofac
 {
     public class GraphEntitiesSettings
     {

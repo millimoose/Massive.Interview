@@ -12,7 +12,7 @@ namespace Massive.Interview.LoaderApp.Tests
     [TestClass]
     public class NodeDocumentReaderTest
     {
-        INodeDocumentReader reader = new NodeXmlDocumentReader();
+        INodeDocumentReader _reader = new NodeXmlDocumentReader();
 
         private async Task WithStreamAsync(string xmlString, Func<Stream, Task> func)
         {
@@ -34,10 +34,10 @@ namespace Massive.Interview.LoaderApp.Tests
 </node>";
 
         [TestMethod]
-        public async Task Parse_valid_document()
+        public async Task ParseValidDocument()
         {
             await WithStreamAsync(_validXmlString, async stream => {
-                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var node = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
 
                 Assert.IsNotNull(node);
                 Assert.AreEqual(1L, node.Id);
@@ -61,10 +61,10 @@ namespace Massive.Interview.LoaderApp.Tests
 </done>";
         [TestMethod]
         [ExpectedException(typeof(XmlException))]
-        public async Task Parse_invalid_root_node()
+        public async Task ParseInvalidRootNode()
         {
             await WithStreamAsync(_invalidRootNode, async stream => {
-                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var node = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
 
@@ -81,10 +81,10 @@ namespace Massive.Interview.LoaderApp.Tests
 </node>";
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
-        public async Task Parse_invalid_root_descendant()
+        public async Task ParseInvalidRootDescendant()
         {
             await WithStreamAsync(_invalidRootDescendant, async stream => {
-                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var node = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
 
@@ -101,10 +101,10 @@ namespace Massive.Interview.LoaderApp.Tests
 </node>";
         [TestMethod]
         [ExpectedException(typeof(XmlException))]
-        public async Task Parse_invalid_adjacent_node_id()
+        public async Task ParseInvalidAdjacentNodeId()
         {
             await WithStreamAsync(_invalidAdjacentNodeId, async stream => {
-                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var node = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
         static readonly string _emptyAdjacentIds =
@@ -115,10 +115,10 @@ namespace Massive.Interview.LoaderApp.Tests
     <adjacentNodes/>
 </node>";
         [TestMethod]
-        public async Task Parse_empty_adjacentIds()
+        public async Task ParseEmptyAdjacentIds()
         {
             await WithStreamAsync(_emptyAdjacentIds, async stream => {
-                var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
+                var node = await _reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
                 CollectionAssert.AreEquivalent(new long[0], node.AdjacentNodeIds.ToArray());
             }).ConfigureAwait(false);
         }

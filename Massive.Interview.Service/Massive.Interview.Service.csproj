@@ -31,6 +31,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>..\Massive.Interview.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -140,6 +141,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="GraphService.svc.cs">
       <DependentUpon>GraphService.svc</DependentUpon>
     </Compile>
@@ -166,9 +168,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Massive.Interview.Entities.Module\Massive.Interview.Entities.Module.csproj">
-      <Project>{8191fa40-e687-4f9e-bb70-46b9b8c0406c}</Project>
-      <Name>Massive.Interview.Entities.Module</Name>
+    <ProjectReference Include="..\Massive.Interview.Entities.Autofac\Massive.Interview.Entities.Autofac.csproj">
+      <Project>{5629e3cf-2db4-41bd-bfce-f45ff058553f}</Project>
+      <Name>Massive.Interview.Entities.Autofac</Name>
     </ProjectReference>
     <ProjectReference Include="..\Massive.Interview.Entities\Massive.Interview.Entities.csproj">
       <Project>{09fadaa3-d021-4380-b3dd-14c4d2a6e074}</Project>

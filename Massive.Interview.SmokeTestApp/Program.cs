@@ -1,6 +1,6 @@
 ﻿using Autofac;
 using Massive.Interview.Entities;
-using Massive.Interview.Entities.Module;
+using Massive.Interview.Entities.Autofac;
 using System;
 using Microsoft.Extensions.Configuration;
 using System.IO;
@@ -48,7 +48,7 @@ namespace Massive.Interview.SmokeTestApp
         /// </summary>
         private static void WithScopedProgram(IContainer container, Action<Program> action)
         {
-            using (var scope = container.BeginLifetimeScope(nameof(DbContext)))
+            using (var scope = container.BeginLifetimeScope())
             {
                 var program = scope.Resolve<Program>();
                 action(program);
