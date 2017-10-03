@@ -28,12 +28,12 @@ namespace Massive.Interview.Interview.Service.Support
         {
             // break adjacency for all nodes to be removed or updated
             var adjacentIdsToRemove = todo.NodesToUpdate.Select(_ => _.Id).Concat(todo.NodeIdsToRemove);
-            var adjacenciesToRemove = from dbAdjacent in _db.AdjacentNodes
-                                        where adjacentIdsToRemove.Contains(dbAdjacent.LeftNodeId.Value)
-                                           || adjacentIdsToRemove.Contains(dbAdjacent.RightNodeId.Value)
-                                        select dbAdjacent;
+            var adjacentsToRemove = from dbAdjacent in _db.AdjacentNodes
+                                      where adjacentIdsToRemove.Contains(dbAdjacent.LeftNodeId.Value)
+                                         || adjacentIdsToRemove.Contains(dbAdjacent.RightNodeId.Value)
+                                      select dbAdjacent;
 
-            await adjacenciesToRemove.DeleteAsync().ConfigureAwait(false);
+            await adjacentsToRemove.DeleteAsync().ConfigureAwait(false);
 
             // delete nodes
             var nodesToRemove = from dbNode in _db.Nodes
@@ -45,11 +45,11 @@ namespace Massive.Interview.Interview.Service.Support
             _db.Nodes.UpdateRange(NewNodesFromInputs(todo.NodesToUpdate));
 
             // create new adjacencies
-            var adjacenciesToAdd = from input in todo.NodesToAdd.Concat(todo.NodesToUpdate)
-                                   from adjacent in input.AdjacentNodeIds ?? Enumerable.Empty<long>()
-                                   select (leftId: input.Id, rightId: adjacent);
+            var adjacentsToAdd = from input in todo.NodesToAdd.Concat(todo.NodesToUpdate)
+                                 from adjacent in input.AdjacentNodeIds
+                                 select (leftId: input.Id, rightId: adjacent);
 
-            foreach (var (leftId, rightId) in adjacenciesToAdd)
+            foreach (var (leftId, rightId) in adjacentsToAdd)
             {
                 await _db.AdjacentNodes.MakeAdjacentAsync(leftId, rightId).ConfigureAwait(false);
             }
@@ -57,7 +57,7 @@ namespace Massive.Interview.Interview.Service.Support
         
 
         /// <summary>
-        /// Convert <see cref="NodeInput"/>s to a <see cref="Node"/>s.
+        /// Convert <see cref="NodeInputData"/>s to a <see cref="Node"/>s.
         /// </summary>
         private IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInputData> inputs) =>
              from input in inputs select new Node

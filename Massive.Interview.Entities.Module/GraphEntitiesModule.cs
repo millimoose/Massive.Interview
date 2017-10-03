@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Massive.Interview.Entities.Module
 {
     /// <summary>
-    /// An Autofac module that registers the EF <c>DbContext</c> for the graph model.
+    /// An Autofac module that registers the EF <see cref="DbContext"/> for the graph model.
     /// </summary>
     public class GraphEntitiesModule : Autofac.Module
     {
