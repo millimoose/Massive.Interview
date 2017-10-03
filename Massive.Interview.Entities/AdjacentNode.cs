@@ -78,7 +78,6 @@ namespace Massive.Interview.Entities
 
             var oldNode = await dbAdjacents.FindAsync(leftId, rightId).ConfigureAwait(false);
             
-
             if (oldNode == null)
             {
                 var newNode = new AdjacentNode { LeftNodeId = leftId, RightNodeId = rightId };

@@ -30,15 +30,10 @@ namespace Massive.Interview.ViewerApp
 
             var graphData = _graphService.GetGraph();
 
-            var aglGraph = new Graph();
-            var aglNodes = from nodeData in graphData.Nodes
-                           let idString = Convert.ToString(nodeData.Id, CultureInfo.InvariantCulture)
-                           select new Node(idString) { LabelText = nodeData.Label };
-
-            foreach (var aglNode in aglNodes) {
-                aglGraph.AddNode(aglNode);
-            }
-
+            var aglGraph = new Graph() {
+                Directed = false
+            };
+            // add edges
             var aglEdges = from adjacentData in graphData.AdjacentNodes
                            let left = Convert.ToString(adjacentData.LeftId, CultureInfo.InvariantCulture)
                            let right = Convert.ToString(adjacentData.RightId, CultureInfo.InvariantCulture)
@@ -46,9 +41,20 @@ namespace Massive.Interview.ViewerApp
 
             foreach (var (left, right) in aglEdges)
             {
-                aglGraph.AddEdge(left, right);
+                var edge = aglGraph.AddEdge(left, right);
+                edge.Attr.ArrowheadAtSource = edge.Attr.ArrowheadAtTarget = ArrowStyle.None;
             }
 
+            // set node labels
+            var aglNodes = from nodeData in graphData.Nodes
+                           let id = Convert.ToString(nodeData.Id, CultureInfo.InvariantCulture)
+                           select (id, label: nodeData.Label);
+
+            foreach (var (id, label) in aglNodes)
+            {
+                var node = aglGraph.FindNode(id) ?? aglGraph.AddNode(id);
+                node.LabelText = label;
+            }
             AglGraph = aglGraph;
         }
 
