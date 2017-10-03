@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="5a14af60-9659-463b-937a-ed3cd05d0e68" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:6555/GraphService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="GraphService.xsd" MetadataType="Schema" ID="6052b970-737a-4995-8e1e-caa6672f2fdf" SourceId="1" SourceUrl="http://localhost:6555/GraphService.svc?xsd=xsd1" />
+    <MetadataFile FileName="GraphService1.xsd" MetadataType="Schema" ID="b4add00b-23b2-47cb-933f-65386d02c819" SourceId="1" SourceUrl="http://localhost:6555/GraphService.svc?xsd=xsd2" />
+    <MetadataFile FileName="GraphService.wsdl" MetadataType="Wsdl" ID="0cffec68-09a8-48fb-9a71-08abc540fe59" SourceId="1" SourceUrl="http://localhost:6555/GraphService.svc?wsdl" />
+    <MetadataFile FileName="GraphService2.xsd" MetadataType="Schema" ID="eafc924e-3251-4b50-815f-0487a8cd4c37" SourceId="1" SourceUrl="http://localhost:6555/GraphService.svc?xsd=xsd0" />
+    <MetadataFile FileName="GraphService.disco" MetadataType="Disco" ID="6ec4d8cf-55be-49a4-bb2a-8a917e736a0c" SourceId="1" SourceUrl="http://localhost:6555/GraphService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

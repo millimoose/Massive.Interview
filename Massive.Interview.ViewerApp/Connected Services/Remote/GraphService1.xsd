@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Massive.Interview.Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Massive.Interview.Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="GraphData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AdjacentNodes" nillable="true" type="tns:ArrayOfAdjacentNodeData" />
+      <xs:element minOccurs="0" name="Nodes" nillable="true" type="tns:ArrayOfNodeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GraphData" nillable="true" type="tns:GraphData" />
+  <xs:complexType name="ArrayOfAdjacentNodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="AdjacentNodeData" nillable="true" type="tns:AdjacentNodeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfAdjacentNodeData" nillable="true" type="tns:ArrayOfAdjacentNodeData" />
+  <xs:complexType name="AdjacentNodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LeftId" type="xs:long" />
+      <xs:element minOccurs="0" name="RightId" type="xs:long" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AdjacentNodeData" nillable="true" type="tns:AdjacentNodeData" />
+  <xs:complexType name="ArrayOfNodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="NodeData" nillable="true" type="tns:NodeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfNodeData" nillable="true" type="tns:ArrayOfNodeData" />
+  <xs:complexType name="NodeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:long" />
+      <xs:element minOccurs="0" name="Label" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="NodeData" nillable="true" type="tns:NodeData" />
+</xs:schema>
