@@ -76,14 +76,10 @@ namespace Massive.Interview.Entities
                 (leftId, rightId) = (rightId, leftId);
             }
 
-            var oldNodeQuery = from dbAdjacent in dbAdjacents
-                               where dbAdjacent.LeftNodeId == leftId
-                                  && dbAdjacent.RightNodeId == rightId
-                               select dbAdjacent;
-            var oldNode = await oldNodeQuery.SingleOrDefaultAsync().ConfigureAwait(false);
+            var oldNode = await dbAdjacents.FindAsync(leftId, rightId).ConfigureAwait(false);
+            
 
-
-            if (oldNode != null)
+            if (oldNode == null)
             {
                 var newNode = new AdjacentNode { LeftNodeId = leftId, RightNodeId = rightId };
                 await dbAdjacents.AddAsync(newNode).ConfigureAwait(false);
