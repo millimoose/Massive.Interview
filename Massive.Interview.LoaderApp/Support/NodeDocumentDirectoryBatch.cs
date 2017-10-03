@@ -3,7 +3,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Remote;
 using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
@@ -26,7 +25,7 @@ namespace Massive.Interview.LoaderApp.Support
 
         public Task<NodeInputData[]> LoadDocumentsAsync()
         {
-            var files = _searchPattern == null 
+            var files = _searchPattern == null
                 ? _directory.EnumerateFiles()
                 : _directory.EnumerateFiles(_searchPattern);
 

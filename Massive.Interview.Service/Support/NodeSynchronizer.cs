@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Massive.Interview.Entities;
 using Z.EntityFramework.Plus;
 using System.Threading.Tasks;
-using Massive.Interview.Service;
 using Massive.Interview.Service.Contract;
+using Microsoft.EntityFrameworkCore;
 
 namespace Massive.Interview.Interview.Service.Support
 {
@@ -20,7 +20,7 @@ namespace Massive.Interview.Interview.Service.Support
 
         public NodeSynchronizationTodo NewTodo(IEnumerable<NodeInputData> newNodes)
         {
-            var oldNodeIds = (from dbNode in _db.Nodes select dbNode.NodeId.Value);
+            var oldNodeIds = (from dbNode in _db.Nodes.AsNoTracking() select dbNode.NodeId.Value);
             return new NodeSynchronizationTodo(oldNodeIds, newNodes);
         }
 
@@ -29,10 +29,9 @@ namespace Massive.Interview.Interview.Service.Support
             // break adjacency for all nodes to be removed or updated
             var adjacentIdsToRemove = todo.NodesToUpdate.Select(_ => _.Id).Concat(todo.NodeIdsToRemove);
             var adjacentsToRemove = from dbAdjacent in _db.AdjacentNodes
-                                      where adjacentIdsToRemove.Contains(dbAdjacent.LeftNodeId.Value)
-                                         || adjacentIdsToRemove.Contains(dbAdjacent.RightNodeId.Value)
-                                      select dbAdjacent;
-
+                                    where adjacentIdsToRemove.Contains(dbAdjacent.LeftNodeId.Value)
+                                       || adjacentIdsToRemove.Contains(dbAdjacent.RightNodeId.Value)
+                                    select dbAdjacent;
             await adjacentsToRemove.DeleteAsync().ConfigureAwait(false);
 
             // delete nodes
@@ -54,14 +53,14 @@ namespace Massive.Interview.Interview.Service.Support
                 await _db.AdjacentNodes.MakeAdjacentAsync(leftId, rightId).ConfigureAwait(false);
             }
         }
-        
+
 
         /// <summary>
         /// Convert <see cref="NodeInputData"/>s to a <see cref="Node"/>s.
         /// </summary>
         private IEnumerable<Node> NewNodesFromInputs(IEnumerable<NodeInputData> inputs) =>
-             from input in inputs select new Node
-             {
+             from input in inputs
+             select new Node {
                  NodeId = input.Id,
                  Label = input.Label
              };

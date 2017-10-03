@@ -42,7 +42,7 @@ namespace Massive.Interview.Entities
         {
             format = format ?? "G";
             formatProvider = formatProvider ?? CultureInfo.CurrentCulture;
-            
+
             switch (format)
             {
                 // short format

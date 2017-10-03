@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-
-namespace Massive.Interview.LoaderApp
+﻿namespace Massive.Interview.LoaderApp
 {
     class LoaderSettings
     {

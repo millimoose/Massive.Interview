@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
-using System.Linq;
-using System.Web;
-using System.Web.Security;
-using System.Web.SessionState;
 using Autofac;
 using Autofac.Integration.Wcf;
 using Massive.Interview.Entities;
@@ -19,8 +14,7 @@ namespace Massive.Interview.Service
         {
             var builder = new ContainerBuilder();
             var connectionString = ConfigurationManager.ConnectionStrings["Massive.Interview.Entities"];
-            var settings = new GraphEntitiesSettings
-            {
+            var settings = new GraphEntitiesSettings {
                 ConnectionString = connectionString.ConnectionString
             };
             builder.RegisterModule(new GraphEntitiesModule(settings));

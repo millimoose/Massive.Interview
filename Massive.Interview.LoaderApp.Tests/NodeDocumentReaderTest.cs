@@ -36,8 +36,7 @@ namespace Massive.Interview.LoaderApp.Tests
         [TestMethod]
         public async Task Parse_valid_document()
         {
-            await WithStreamAsync(_validXmlString, async stream =>
-            {
+            await WithStreamAsync(_validXmlString, async stream => {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
 
                 Assert.IsNotNull(node);
@@ -64,8 +63,7 @@ namespace Massive.Interview.LoaderApp.Tests
         [ExpectedException(typeof(XmlException))]
         public async Task Parse_invalid_root_node()
         {
-            await WithStreamAsync(_invalidRootNode, async stream =>
-            {
+            await WithStreamAsync(_invalidRootNode, async stream => {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
@@ -85,8 +83,7 @@ namespace Massive.Interview.LoaderApp.Tests
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public async Task Parse_invalid_root_descendant()
         {
-            await WithStreamAsync(_invalidRootDescendant, async stream =>
-            {
+            await WithStreamAsync(_invalidRootDescendant, async stream => {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
@@ -106,8 +103,7 @@ namespace Massive.Interview.LoaderApp.Tests
         [ExpectedException(typeof(XmlException))]
         public async Task Parse_invalid_adjacent_node_id()
         {
-            await WithStreamAsync(_invalidAdjacentNodeId, async stream =>
-            {
+            await WithStreamAsync(_invalidAdjacentNodeId, async stream => {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
             }).ConfigureAwait(false);
         }
@@ -121,8 +117,7 @@ namespace Massive.Interview.LoaderApp.Tests
         [TestMethod]
         public async Task Parse_empty_adjacentIds()
         {
-            await WithStreamAsync(_emptyAdjacentIds, async stream =>
-            {
+            await WithStreamAsync(_emptyAdjacentIds, async stream => {
                 var node = await reader.ParseNodeInputAsync(stream).ConfigureAwait(false);
                 CollectionAssert.AreEquivalent(new long[0], node.AdjacentNodeIds.ToArray());
             }).ConfigureAwait(false);

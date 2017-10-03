@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Massive.Interview.Interview.Service.Support;
-using Massive.Interview.Service;
 using Massive.Interview.Service.Contract;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -17,7 +14,7 @@ namespace Massive.Interview.LoaderApp.Tests
             var previousIds = new long[] { 1, 2, 3, 4 };
             var newIds = new long[] { 3, 4, 5, 6 };
             var newNodes = from id in newIds select new NodeInputData { Id = id };
-        
+
             var todo = new NodeSynchronizationTodo(previousIds, newNodes);
 
             CollectionAssert.AreEquivalent(

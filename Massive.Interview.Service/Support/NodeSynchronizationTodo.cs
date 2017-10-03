@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Massive.Interview.Service;
 using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.Interview.Service.Support
@@ -32,7 +28,7 @@ namespace Massive.Interview.Interview.Service.Support
         /// Create a set of synchronisation operations based on node IDs 
         /// currently in the database, and loaded nodes.
         /// </summary>
-        /// <param name="oldNodeIds">previous node IDs</param>
+        /// <param name="oldNodeIds">old node IDs</param>
         /// <param name="newNodes">new nodes</param>
         public NodeSynchronizationTodo(IEnumerable<long> oldNodeIds, IEnumerable<NodeInputData> newNodes)
         {

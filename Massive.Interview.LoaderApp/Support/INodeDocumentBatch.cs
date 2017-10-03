@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-using Massive.Interview.LoaderApp.Remote;
+﻿using System.Threading.Tasks;
 using Massive.Interview.Service.Contract;
 
 namespace Massive.Interview.LoaderApp.Support
@@ -14,7 +11,6 @@ namespace Massive.Interview.LoaderApp.Support
         /// <summary>
         /// Load a batch of documents into <see cref="NodeInput"/> instances.
         /// </summary>
-        /// 
         Task<NodeInputData[]> LoadDocumentsAsync();
     }
 }
