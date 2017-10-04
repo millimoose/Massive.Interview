@@ -22,14 +22,11 @@ namespace Massive.Interview.ViewerApp
     /// </summary>
     public partial class ShellView : UserControl
     {
-        private ShellViewModel ViewModel { get => (ShellViewModel) DataContext; }
+        private ShellViewModel ViewModel { get => (ShellViewModel) DataContext; }      
 
-        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        private void WindowsFormsHost_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            var viewer = new GViewer {
-                Graph = ViewModel.AglGraph
-            };
-            GraphHost.Child = viewer;
+            GViewer.Graph = ViewModel.AglGraph;
         }
     }
 }
